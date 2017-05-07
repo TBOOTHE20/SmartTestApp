@@ -1,9 +1,10 @@
+package smarttestapp;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package smarttestapp;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -24,56 +25,43 @@ import javafx.stage.Stage;
  *
  * @author csc190
  */
-public class SmartTestApp extends Application {
-    //THESE ARE THE THINGS THAT NEED TO BE FIXED WITH THIS IMPLEMENTATION
-    //1. Connect the database to the login
-    //2. Add a new button for register
-    //3. Set up the scene to that when register is hit, the scene changes to a new option
-    //4. Set up mysql instructions such as update and create for login and register
-    //5. Add either a text field or button that indicates the role of the user
-    @Override
+public class StudentHomePg extends Application {
+    
+     @Override
     public void start(Stage primaryStage) {
         //1. add label Login Form/Occupies 2 columns
         GridPane gp = new GridPane();
-        Label lblTitle = new Label("Welcome to SmartTest");
+        Label lblTitle = new Label("Student Test");
         gp.add(lblTitle, 0, 0, 2, 1);
         
-        //2. second row, add uname and textbox
-        Label lblUsr = new Label("User Name");
+        //2. second row, add pincode and textbox
+        Label lblUsr = new Label("Pincode");
         TextField tfUser = new TextField();
         gp.add(lblUsr, 0, 1);
         gp.add(tfUser, 1, 1);
         
-        //3. third row, add password
-        Label lblPwd = new Label("Password");
-        PasswordField pf = new PasswordField();
-        gp.add(lblPwd, 0, 2);
-        gp.add(pf, 1, 2);
+        //3. add Button
+        Button btnStart = new Button();
+        btnStart.setText("Start");
+        gp.add(btnStart, 1, 3);   
         
-        //4. add Button
-        Button btnLogin = new Button();
-        btnLogin.setText("Login");
-        gp.add(btnLogin, 1, 3);
-        
-        
-        //5. add handler
-        btnLogin.setOnAction(new EventHandler<ActionEvent>() {
+        //4. add handler
+        btnStart.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                String uname = tfUser.getText();
-                String pwd = pf.getText();
+                String Start = tfUser.getText();
+                //String pwd = pf.getText();
                 
             }
         });
-        
-                
+               
         Scene scene = new Scene(gp, 300, 250);
         /*scene.getStylesheets().add(
                 Login.class.getResource("newCascadeStyleSheet.css").toExternalForm()
         );*/
         
-        primaryStage.setTitle("Login");
+        primaryStage.setTitle("Student Homepage");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
