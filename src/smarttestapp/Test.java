@@ -14,10 +14,10 @@ import java.util.ArrayList;
 public class Test implements java.io.Serializable {
     ArrayList<Question> myListofQuestions = new ArrayList(); 
 
-   public void addEmployee(Employee e) {
+   public void addQuestions(Question q) {
 
         //add to array
-        myListofEmployeesSchedules.add(e);
+        myListofQuestions.add(q);
 
     } 
 }
