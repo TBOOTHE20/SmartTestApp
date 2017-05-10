@@ -8,11 +8,9 @@ USE stest_db;
 CREATE TABLE tbl_users(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(255),
-	role VARCHAR(255),
-	usename VARCHAR(255),
-	pword TEXT
+	val TEXT
 );
-INSERT INTO tbl_users (name, role, username, pword) VALUES ("Jane Doe","Teacher", "janedoe@hofstra.edu" "INVALIDPWOED");
+INSERT INTO tbl_users (name, val) VALUES ("users","INVALIDVAL");
 CREATE TABLE tbl_test(
 	pinID INT PRIMARY KEY,
 	testname VARCHAR(255),
