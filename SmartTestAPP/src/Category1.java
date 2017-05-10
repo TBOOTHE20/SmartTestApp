@@ -9,12 +9,15 @@
  * @author csc190
  */
 public class Category1 implements java.io.Serializable{
+    
     //keeps array of all of their category 2 names
-    protected String name; //learning outcome name
+    protected String cat1Name; //learning outcome name
     protected Category2 [] arrCat2; 
-    public Category1 (String inpN, Category2 [] inpArrCat2){
-        this.name = inpN;
+    
+    public Category1 (String inpN, Category2[] inpArrCat2){
+        this.cat1Name = inpN;
         this.arrCat2 = inpArrCat2;
     }
-      
+
+    
 }
