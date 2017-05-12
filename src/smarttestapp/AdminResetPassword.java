@@ -5,88 +5,92 @@
  */
 package smarttestapp;
 
-import java.awt.Image;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-
 
 /**
  *
  * @author csc190
  */
-public class AdminCreateNewUser extends Application {
-    
-     @Override
+public class AdminResetPassword extends Application {
+    //THESE ARE THE THINGS THAT NEED TO BE FIXED WITH THIS IMPLEMENTATION
+    //1. Connect the database to the login
+    //2. Add a new button for register
+    //3. Set up the scene to that when register is hit, the scene changes to a new option
+    //4. Set up mysql instructions such as update and create for login and register
+    //5. Add either a text field or button that indicates the role of the user
+    @Override
     public void start(Stage primaryStage) {
         //1. add label Login Form/Occupies 2 columns
         GridPane gp = new GridPane();
         Label lblTitle = new Label("ADMIN CONSOLE");
-        lblTitle.setFont(new Font("Arial", 16));
         gp.add(lblTitle, 0, 0, 2, 1);
         
-         Label lblTitle2 = new Label("Create a New User");
-         lblTitle2.setFont(new Font("Arial", 14));
+         Label lblTitle2 = new Label("Reset Password");
         gp.add(lblTitle2, 0, 1, 2, 2);
+
         
         //2. second row, add pincode and textbox
-        Label lblFir = new Label("First Name");
+        Label lblFir = new Label("User Information");
         TextField tfFir = new TextField();
         gp.add(lblFir, 0, 3);
         gp.add(tfFir, 1, 3);
-        
-        Label lblLas = new Label("Last Name");
-        TextField tfLas = new TextField();
-        gp.add(lblLas, 2, 3);
-        gp.add(tfLas, 3, 3);
-        
-        Label lblUser = new Label("Username");
-        TextField tfUser = new TextField();
-        gp.add(lblUser, 0, 4);
-        gp.add(tfUser, 1, 4);
-        
-        Label lblPwd = new Label("Password");
+        //2. second row, add uname and textbox
+        Label lblPwd = new Label("New Password");
         PasswordField pf = new PasswordField();
-        gp.add(lblPwd, 2, 4);
-        gp.add(pf, 3, 4);
+        gp.add(lblPwd, 0, 4);
+        gp.add(pf, 1, 4);
         
+        //3. third row, add password
+        Label lblCPwd = new Label("Confirm New Password");
+        PasswordField cpf = new PasswordField();
+        gp.add(lblCPwd, 0, 5);
+        gp.add(cpf, 1, 5);
         
-        //3. add Button
-        Button btnCreate = new Button();
-        btnCreate.setText("Create");
-        gp.add(btnCreate, 1, 7);
+        //4. add Button
+        Button btnConfirm = new Button();
+        btnConfirm.setText("Confirm");
+        gp.add(btnConfirm, 0, 6);
         
         Button btnCancel = new Button();
         btnCancel.setText("Cancel");
-        gp.add(btnCancel, 3, 7);
+        gp.add(btnCancel, 1, 6);
         
-        //4. add handler
-        btnCreate.setOnAction(new EventHandler<ActionEvent>() {
+        //5. add handler
+        btnConfirm.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                String Start = tfFir.getText();
+                //String uname = tfUser.getText();
                 //String pwd = pf.getText();
                 
             }
+        });    
+        btnCancel.setOnAction(new EventHandler<ActionEvent>() {
+            
+            @Override
+            public void handle(ActionEvent event) {
+                //String uname = tfUser.getText();
+                //String pwd = pf.getText();
+                
+            }
+            
         });
-               
-        Scene scene = new Scene(gp, 550, 250);
+        
+                
+        Scene scene = new Scene(gp, 450, 250);
         /*scene.getStylesheets().add(
                 Login.class.getResource("newCascadeStyleSheet.css").toExternalForm()
         );*/
@@ -94,20 +98,8 @@ public class AdminCreateNewUser extends Application {
         primaryStage.setTitle("Admin");
         primaryStage.setScene(scene);
         primaryStage.show();
-        
-        //------     
-        ToggleGroup group = new ToggleGroup();
-    RadioButton button1 = new RadioButton("Teacher");
-    button1.setToggleGroup(group);
-    //button1.setSelected(true);
-    gp.add(button1, 2, 5);
-    RadioButton button2 = new RadioButton("Student");
-    button2.setToggleGroup(group);
-    gp.add(button2, 2, 6);
-    
     }
 
-    
     /**
      * @param args the command line arguments
      */

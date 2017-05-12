@@ -18,6 +18,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
@@ -36,6 +37,7 @@ public class SmartTestApp extends Application {
         //1. add label Login Form/Occupies 2 columns
         GridPane gp = new GridPane();
         Label lblTitle = new Label("Welcome to SmartTest");
+        lblTitle.setFont(new Font("Arial", 16));
         gp.add(lblTitle, 0, 0, 2, 1);
         
         //2. second row, add uname and textbox

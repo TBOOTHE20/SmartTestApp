@@ -5,82 +5,63 @@
  */
 package smarttestapp;
 
-import java.awt.Image;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.ImageView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
 
 /**
  *
  * @author csc190
  */
-public class AdminCreateNewUser extends Application {
+public class StudentExampleTest extends Application {
     
      @Override
     public void start(Stage primaryStage) {
         //1. add label Login Form/Occupies 2 columns
         GridPane gp = new GridPane();
-        Label lblTitle = new Label("ADMIN CONSOLE");
-        lblTitle.setFont(new Font("Arial", 16));
+        Label lblTitle = new Label("Test:");
         gp.add(lblTitle, 0, 0, 2, 1);
         
-         Label lblTitle2 = new Label("Create a New User");
-         lblTitle2.setFont(new Font("Arial", 14));
-        gp.add(lblTitle2, 0, 1, 2, 2);
         
         //2. second row, add pincode and textbox
-        Label lblFir = new Label("First Name");
-        TextField tfFir = new TextField();
-        gp.add(lblFir, 0, 3);
-        gp.add(tfFir, 1, 3);
+        Label lblFir = new Label("QuestionExample");
+        gp.add(lblFir, 0, 2, 3, 1);
         
-        Label lblLas = new Label("Last Name");
-        TextField tfLas = new TextField();
-        gp.add(lblLas, 2, 3);
-        gp.add(tfLas, 3, 3);
-        
-        Label lblUser = new Label("Username");
-        TextField tfUser = new TextField();
-        gp.add(lblUser, 0, 4);
-        gp.add(tfUser, 1, 4);
-        
-        Label lblPwd = new Label("Password");
-        PasswordField pf = new PasswordField();
-        gp.add(lblPwd, 2, 4);
-        gp.add(pf, 3, 4);
-        
+        Label lblpt = new Label("pt"); //add value of points given 
+        gp.add(lblpt, 3, 2);
         
         //3. add Button
-        Button btnCreate = new Button();
-        btnCreate.setText("Create");
-        gp.add(btnCreate, 1, 7);
+        Button subtes = new Button();
+        subtes.setText("Submit Test");
+        gp.add(subtes, 4, 4);
         
-        Button btnCancel = new Button();
-        btnCancel.setText("Cancel");
-        gp.add(btnCancel, 3, 7);
+        
         
         //4. add handler
-        btnCreate.setOnAction(new EventHandler<ActionEvent>() {
+        subtes.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
-                String Start = tfFir.getText();
+                //String Start = tfFir.getText();
                 //String pwd = pf.getText();
                 
             }
@@ -91,19 +72,31 @@ public class AdminCreateNewUser extends Application {
                 Login.class.getResource("newCascadeStyleSheet.css").toExternalForm()
         );*/
         
-        primaryStage.setTitle("Admin");
+        primaryStage.setTitle("Student");
         primaryStage.setScene(scene);
         primaryStage.show();
         
         //------     
         ToggleGroup group = new ToggleGroup();
-    RadioButton button1 = new RadioButton("Teacher");
-    button1.setToggleGroup(group);
-    //button1.setSelected(true);
-    gp.add(button1, 2, 5);
-    RadioButton button2 = new RadioButton("Student");
-    button2.setToggleGroup(group);
-    gp.add(button2, 2, 6);
+        RadioButton button1 = new RadioButton("choice1");
+        button1.setToggleGroup(group);
+        //button1.setSelected(true);
+        gp.add(button1, 1, 3);
+        
+        RadioButton button2 = new RadioButton("choice2");
+        button2.setToggleGroup(group);
+        gp.add(button2, 2, 3);
+        
+        
+        RadioButton button3 = new RadioButton("choice3");
+        button3.setToggleGroup(group);
+        //button1.setSelected(true);
+        gp.add(button3, 3, 3);
+        
+        
+        RadioButton button4 = new RadioButton("choice4");
+        button4.setToggleGroup(group);
+        gp.add(button4, 4, 3);
     
     }
 
