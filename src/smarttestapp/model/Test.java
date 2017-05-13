@@ -14,11 +14,21 @@ import java.util.ArrayList;
  */
 public class Test implements java.io.Serializable {
     ArrayList<Question> myListofQuestions = new ArrayList(); 
+    String Testname;
 
+    
+    
    public void addQuestions(Question q) {
 
         //add to array
         myListofQuestions.add(q);
 
     } 
+   
+   public void addTestName(String testnameinp){
+       
+       //
+       Testname = testnameinp;
+   
+   }
 }
