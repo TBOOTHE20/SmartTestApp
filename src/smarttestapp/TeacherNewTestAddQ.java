@@ -19,6 +19,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -37,20 +38,39 @@ public class TeacherNewTestAddQ extends Application {
     public void start(Stage stage) {
         Scene scene = new Scene(new Group());
         stage.setTitle("Student");
-        stage.setWidth(700);
+        stage.setWidth(800);
         stage.setHeight(600);
         
-        final Label labelq = new Label("Question");
+        final Label labelq = new Label("Question:");
         labelq.setFont(new Font("Arial", 14));
         
         final TextField addq = new TextField();
         addq.setPromptText("question");
         
-        final Label labela = new Label("Answer");//add the nametest variable - concatination
+        final Label labela = new Label("Answer:");//add the nametest variable - concatination
         labela.setFont(new Font("Arial", 14));
         
         final TextField adda = new TextField();
         adda.setPromptText("answer");
+        
+        final Label labelch = new Label("Write in choices (separating them by a comma) :");//add the nametest variable - concatination
+        labelch.setFont(new Font("Arial", 14));
+        
+        final TextField addch = new TextField();
+        addch.setPromptText("choices");
+        
+        final Label labello = new Label("Learning Outcomes:");//add the nametest variable - concatination
+        labello.setFont(new Font("Arial", 14));
+        
+        final Button addButton = new Button("Add");
+        addButton.setOnAction((ActionEvent e) -> {
+            
+        });
+        
+        final Button cancelButton = new Button("Cancel");
+        cancelButton.setOnAction((ActionEvent e) -> {
+            
+        });
         
         
         //vbox for checkboxes     
@@ -87,13 +107,21 @@ public class TeacherNewTestAddQ extends Application {
         FlowPane root = new FlowPane();
         root.setHgap(20);
         root.getChildren().addAll(vbchecks);
-           
+         
+        final HBox hb1 = new HBox();
+        hb1.getChildren().addAll(addButton , cancelButton);
+        hb1.setSpacing(3);
+        
+        
+        final HBox hb2 = new HBox();
+        hb2.getChildren().addAll(labela, adda, labelch, addch);
+        hb2.setSpacing(3);
         
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
         //addNewTestButton, uplLOButton,
-        vbox.getChildren().addAll(labelq,addq, labela, adda,root);
+        vbox.getChildren().addAll(labelq, addq, hb2, labello ,root, hb1);
         ((Group) scene.getRoot()).getChildren().addAll(vbox);
         
         
