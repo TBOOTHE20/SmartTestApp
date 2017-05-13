@@ -10,14 +10,13 @@ package smarttestapp.model;
  * @author csc190
  */
 public class userInfo implements java.io.Serializable {
-    Integer id;
     public String fname;
     public String username;
     public String password;
     public String role;
     
-    public userInfo(int inpID, String inpFname, String inpUsername, String inpPassword, String inpRole){
-        this.id = inpID;
+    public userInfo( String inpFname, String inpUsername, String inpPassword, String inpRole){
+        
         this.fname = inpFname;
         this.username = inpUsername;
         this.password = inpPassword;

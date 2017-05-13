@@ -22,29 +22,27 @@ import java.util.Base64;
  * @author csc190
  */
 public class Client {
-    protected static users buildUser() {
+    protected static userInfo buildUser() {
         //this is hardcoded users into the database
   
         //this is the arraylist of skills for users
         //this user is made from an id, fname, username, password, and role
         userInfo [] arrUsers = new userInfo[]{
-           new userInfo(101, "Jane Doe", "doeJane@hofstra.edu", "doeJane", "Admin"),
-           new userInfo(201, "Mini Me", "meMini@hofstra.edu", "meMini", "Teacher"),
-           new userInfo(301, "Number Two", "twoNumber@hofstra.edu", "twoNumber", "Student") 
+           new userInfo( "Mini Me", "meMini@hofstra.edu", "meMini", "Teacher"),
+           new userInfo("Number Two", "twoNumber@hofstra.edu", "twoNumber", "Student") 
         };
         
         
         //making an array users for both of the user
         users user1 = new users(arrUsers);
         
-        return user1;
+        return arrUsers[0];
     }
 
     /**
      * Serialization. Convert Menu to byte array, and then encode using base64
      *
-     * @param users
-     * @param 
+     * @param user1
      * @return
      */
     protected static String usersToStr(users user1) {
@@ -74,12 +72,12 @@ public class Client {
 
     public static void main(String[] args) {
         String op = args[0];
-        users user1 = buildUser();
+        userInfo user1 = buildUser();
         String url = "http://localhost/smarttest.php";
         String userContent = Utils.toStr(user1);
         String datastr = op.equals("1")
                 ? "op=uploadUser&val=" + userContent 
-                : "op=getUser" + "&username=" + args[2];
+                : "op=getVerification" + "&username=" + args[1] + "&password=" +args[2];
         try {
             String response = Utils.httpsPost(url, datastr);
             System.out.println(response);

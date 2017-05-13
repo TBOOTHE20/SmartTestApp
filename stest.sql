@@ -8,9 +8,14 @@ USE stest_db;
 CREATE TABLE tbl_users(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	name VARCHAR(255),
+        val TEXT
+);
+INSERT INTO tbl_users (name, val) VALUES ("users", "INVALIDVAL");
+CREATE TABLE people(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	name VARCHAR(255),
 	val TEXT
 );
-INSERT INTO tbl_users (name, val) VALUES ("users","INVALIDVAL");
 CREATE TABLE tbl_test(
 	pinID INT PRIMARY KEY,
 	testname VARCHAR(255),
