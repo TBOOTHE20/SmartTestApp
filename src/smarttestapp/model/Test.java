@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package smarttestapp;
+package smarttestapp.model;
 
+import smarttestapp.model.Question;
 import java.util.ArrayList;
 
 /**
