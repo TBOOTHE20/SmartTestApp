@@ -54,6 +54,7 @@ public class SmartTestApp extends Application {
     ToggleGroup group;
     Stage thestage;
     ArrayList<userInfo> datafromUsers;
+    ArrayList<userInfo> people;
     //This is going to be the username and Password for the admin
     String checkUser = "drEvil@hofstra.edu";
     String checkPassword = "goodyear";
@@ -104,15 +105,28 @@ public class SmartTestApp extends Application {
                 pwdLogin = pfLogin.getText().toString();
                 
                 //UNDERCONSTRUCTION!!!!!!!!!
-                if(unameLogin.equals(checkUser) && pwdLogin.equals(checkPassword)){
-                    thestage.setScene(scene1);
-                }
-                else{
-                   Alert al = new Alert(AlertType.INFORMATION);
-                   al.setContentText(unameLogin + " log in using pwd: " + pwdLogin + "is incorrect, please try again later.");
-                   al.showAndWait();  
-                }
-                
+                people = Server.getAllUsers();
+                for(userInfo a : people){
+                    if(a.username.equals(unameLogin) && a.password.equals(pwdLogin)){
+                        System.out.println("databaseuname: " + a.username + ", Uname: " + unameLogin);
+                        System.out.println("databasePassword: " + a.password + ", password: " + pwdLogin);
+                        System.out.println("role:"+ a.role);
+                        if(a.role.equals("Teacher")){
+                           //scene change to Teacher 
+                        }
+                        else if(a.role.equals("Student")){
+                           //scene change to Student
+                        }
+                        else if(a.role.equals("Admin")){
+                            thestage.setScene(scene1);
+                        }
+                        else{
+                            Alert al = new Alert(AlertType.INFORMATION);
+                            al.setContentText("You are not registered to the system.");
+                            al.showAndWait();
+                        }          
+                    }
+               }          
             }
         });
         //..This is the end of that..//
@@ -220,10 +234,13 @@ public class SmartTestApp extends Application {
                fName =tfFirAdmin.getText().toString();
                AdminUsername =tfUser.getText().toString();
                pwd=pfAdmin.getText().toString();
-               if(button1.isSelected() == false){
-                   role = "Student";
-               }else{
+               if(button1.isSelected() == false && button2.isSelected()== false){
+                   role = "Admin";
+               }else if(button1.isSelected() == false){
                    role = "Teacher";
+               }
+               else {
+                   role = "Student";
                }
                if(fName == null || AdminUsername== null || pwd == null || role == null){
                    Alert al = new Alert(AlertType.INFORMATION);
