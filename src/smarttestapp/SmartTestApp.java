@@ -6,6 +6,7 @@
 package smarttestapp;
 
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -42,15 +43,17 @@ import smarttestapp.model.users;
  */
 public class SmartTestApp extends Application {
     
-    Button btnLogin, btnCreateAdmin ,btnCancel, btnConfirmReset ,btnCancelReset,btnScene2_4, btnScene3_1, btnScene3_2, btnScene3_4,btnScene4_1,btnScene4_2,btnScene4_3;
+    Button btnLogin, btnCreateAdmin ,btnCancelAdmin, btnConfirmReset ,btnCancelReset,btnScene2_4, btnScene3_1, btnScene3_2, btnScene3_4,btnScene4_1,btnScene4_2,btnScene4_3;
     Label lblTitleLogin, lblUsrLogin,lblPwdLogin, lblTitleAdmin, lblTitle2Admin,lblFirAdmin,lblUser, lblPwdAdmin, lblTitleReset, lblTitle2, lblFirReset, lblPwdReset, lblCPwdReset ;
     TextField tfUserLogin, tfFirAdmin, tfUser, tfFirReset;
     PasswordField pfLogin, pfAdmin,pfReset, cpfReset ;
-    String unameLogin, pwdLogin, fName, pwd, role, username, resetUName, resetPassword, confirmPassword;
+    String unameLogin, pwdLogin, fName, pwd, role, AdminUsername, resetUName, resetPassword, confirmPassword, databasePassword, sRet, userContent;
     GridPane gpLogin, gpAdmin, gpAdminHome, gpReset, pane4, pane5;
     Scene scene, scene1, scene2, scene3, scene4, scene5;
+    RadioButton button1, button2;
+    ToggleGroup group;
     Stage thestage;
-    
+    ArrayList<userInfo> datafromUsers;
     //This is going to be the username and Password for the admin
     String checkUser = "drEvil@hofstra.edu";
     String checkPassword = "goodyear";
@@ -99,6 +102,8 @@ public class SmartTestApp extends Application {
             public void handle(ActionEvent event) {
                 unameLogin = tfUserLogin.getText().toString();
                 pwdLogin = pfLogin.getText().toString();
+                
+                //UNDERCONSTRUCTION!!!!!!!!!
                 if(unameLogin.equals(checkUser) && pwdLogin.equals(checkPassword)){
                     thestage.setScene(scene1);
                 }
@@ -181,6 +186,7 @@ public class SmartTestApp extends Application {
         gpAdmin.add(tfFirAdmin, 1, 3);
         
         
+        
         lblUser = new Label("Username");
         tfUser = new TextField();
         gpAdmin.add(lblUser, 0, 4);
@@ -197,19 +203,12 @@ public class SmartTestApp extends Application {
         btnCreateAdmin.setText("Create");
         gpAdmin.add(btnCreateAdmin, 1, 7);
         
-         //hold off on this till a little later
-        btnCancel = new Button();
-        btnCancel.setText("Cancel");
-        gpAdmin.add(btnCancel, 3, 7);
         
-        ToggleGroup group = new ToggleGroup();
-        RadioButton button1 = new RadioButton("Teacher");
-        button1.setToggleGroup(group);
-        //button1.setSelected(true);
-        gpAdmin.add(button1, 2, 5);
-        RadioButton button2 = new RadioButton("Student");
-        button2.setToggleGroup(group);
-        gpAdmin.add(button2, 2, 6);
+        btnCancelAdmin = new Button();
+        btnCancelAdmin.setText("Cancel");
+        gpAdmin.add(btnCancelAdmin, 3, 7);
+        
+        
         
        
         
@@ -219,30 +218,35 @@ public class SmartTestApp extends Application {
             @Override
             public void handle(ActionEvent event) {
                fName =tfFirAdmin.getText().toString();
-               username =tfUser.getText().toString();
+               AdminUsername =tfUser.getText().toString();
                pwd=pfAdmin.getText().toString();
                if(button1.isSelected() == false){
                    role = "Student";
                }else{
                    role = "Teacher";
                }
-               
+               if(fName == null || AdminUsername== null || pwd == null || role == null){
+                   Alert al = new Alert(AlertType.INFORMATION);
+                   al.setContentText("Please fill out all the fields in the sheet.");
+                   al.showAndWait();
+               }
                
                userInfo [] arrUsers = new userInfo[]{
-                   new userInfo( fName, username, pwd, role)   
+                   new userInfo( fName, AdminUsername, pwd, role)   
                };
                users user1 = new users(arrUsers);
                userInfo user = arrUsers[0];
                String url = "http://localhost/smarttest.php";
-               String userContent = Utils.toStr(user);
-               String qry = "INSERT INTO people (val) VALUES( '" + userContent +"')";
+               userContent = Utils.toStr(user);
+               //Server.insertUser(userContent);
+               String qry = "INSERT INTO people (name, val) VALUES( '"+ AdminUsername +"', '" + userContent +"')";
                Utils.execNonQuery(qry);
                String response;
                 try {
-                    response = Utils.httpsPost(url, userContent);
-                    System.out.println(response);
+                  response = Utils.httpsPost(url, userContent);
+                  System.out.println(response);
                 } catch (Exception ex) {
-                    Logger.getLogger(SmartTestApp.class.getName()).log(Level.SEVERE, null, ex);
+                   Logger.getLogger(SmartTestApp.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 Alert al = new Alert(AlertType.INFORMATION);
                    al.setContentText("The user has been added to the database.");
@@ -250,7 +254,7 @@ public class SmartTestApp extends Application {
             }
                 
         });
-        btnCancel.setOnAction(new EventHandler<ActionEvent>() {
+        btnCancelAdmin.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
             public void handle(ActionEvent event) {
@@ -258,6 +262,19 @@ public class SmartTestApp extends Application {
                 
             }
         });
+        
+        group = new ToggleGroup();
+        button1 = new RadioButton("Teacher");
+        button1.setToggleGroup(group);
+        //button1.setSelected(true);
+        gpAdmin.add(button1, 2, 5);
+        button2 = new RadioButton("Student");
+        button2.setToggleGroup(group);
+        gpAdmin.add(button2, 2, 6);
+        
+        
+        
+        
         
         //This is the one for handling Reset Password
         gpReset = new GridPane();
@@ -269,7 +286,7 @@ public class SmartTestApp extends Application {
 
         
         //2. second row, add pincode and textbox
-        lblFirReset = new Label("Username? AKA your email");
+        lblFirReset = new Label("Username");
         tfFirReset = new TextField();
         gpReset.add(lblFirReset, 0, 3);
         gpReset.add(tfFirReset, 1, 3);
@@ -293,7 +310,7 @@ public class SmartTestApp extends Application {
         
         btnCancelReset = new Button();
         btnCancelReset.setText("Cancel");
-        gpReset.add(btnCancel, 1, 6);
+        gpReset.add(btnCancelReset, 1, 6);
         
         //5. add handler
         btnConfirmReset.setOnAction(new EventHandler<ActionEvent>() {
@@ -301,45 +318,63 @@ public class SmartTestApp extends Application {
             @Override
             public void handle(ActionEvent event) {
                resetUName =tfFirReset.getText().toString();
-               resetPassword = cpfReset.getText().toString();
-               String databasePassword = Server.getUser(resetUName);
+               resetPassword = pfReset.getText().toString();
+               confirmPassword = cpfReset.getText().toString();
+               datafromUsers = Server.getAllUsers();
+               for(userInfo a : datafromUsers){
+                    System.out.println("uname: " + a.username + ", resetUname: " + resetUName);
+                    if(a.username.equals(resetUName)){
+                        a.password = resetPassword;
+                        userInfo [] arrU = new userInfo[]{
+                               new userInfo( a.fname, a.username, a.password, a.role)   
+                        };
+                        users user1 = new users(arrU);
+                        userInfo user = arrU[0];
+                        String url = "http://localhost/smarttest.php";
+                        String userC = Utils.toStr(user);
+                        System.out.println("New pwd is: " + a.password);
+                        System.out.print(userC);
+                        Server.updateUser(resetUName,userC);
+                        
+                        String response;
+                        try {
+                            response = Utils.httpsPost(url, userC);
+                            System.out.println(response);
+                        } catch (Exception ex) {
+                                Logger.getLogger(SmartTestApp.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                        Alert al = new Alert(AlertType.INFORMATION);
+                        al.setContentText("The password has been reset to the database.");
+                        al.showAndWait();
+                    }
+               }
+                
+                if(resetPassword != confirmPassword){
+                   Alert al = new Alert(AlertType.INFORMATION);
+                   al.setContentText("Your input passwords do not match.");
+                   al.showAndWait();
+                }
+                /*if(resetPassword == databasePassword){
+                   Alert al = new Alert(AlertType.INFORMATION);
+                   al.setContentText("This password has already been saved to the database.");
+                   al.showAndWait();
+                }*/
+        
+               
+               /*databasePassword = Server.getUser(resetUName);
                if(resetPassword == databasePassword){
                    Alert al = new Alert(AlertType.INFORMATION);
                    al.setContentText("This password has already been saved to the database.");
                    al.showAndWait();
-               }
-               else if(resetPassword != confirmPassword){
-                   Alert al = new Alert(AlertType.INFORMATION);
-                   al.setContentText("Your input passwords do not match.");
-                   al.showAndWait();
-               }
-               else{
-                   
-               }
-               /*username =tfUser.getText().toString();
-               pwd=pfAdmin.getText().toString();
-               role="Teacher";
+               }*/
                
-               userInfo [] arrUsers = new userInfo[]{
-                   new userInfo( fName, username, pwd, role)   
-               };
-               users user1 = new users(arrUsers);
-               userInfo user = arrUsers[0];
-               String url = "http://localhost/smarttest.php";
-               String userContent = Utils.toStr(user);
-               String qry = "INSERT INTO people (val) VALUES( '" + userContent +"')";
-               Utils.execNonQuery(qry);
-               String response;
-                try {
-                    response = Utils.httpsPost(url, userContent);
-                    System.out.println(response);
-                } catch (Exception ex) {
-                    Logger.getLogger(SmartTestApp.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                Alert al = new Alert(AlertType.INFORMATION);
-                   al.setContentText("The changes have been made to the database.");
-                   al.showAndWait();*/          
-            }
+               }
+              
+                       
+                       
+           
+                    
+               
                 
             
         });    
