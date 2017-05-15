@@ -41,21 +41,6 @@ public class StudentExampleTest extends Application {
         Label lblTitle = new Label("Test:");
         gp.add(lblTitle, 0, 0, 2, 1);
         
-        
-        //2. second row, add pincode and textbox
-        Label lblFir = new Label("QuestionExample");
-        gp.add(lblFir, 0, 2, 3, 1);
-        
-        Label lblpt = new Label("pt"); //add value of points given 
-        gp.add(lblpt, 3, 2);
-        
-        //3. add Button
-        Button subtes = new Button();
-        subtes.setText("Submit Test");
-        gp.add(subtes, 4, 4);
-        
-        
-        
         //4. add handler
         subtes.setOnAction(new EventHandler<ActionEvent>() {
             
@@ -77,6 +62,29 @@ public class StudentExampleTest extends Application {
         primaryStage.show();
         
         //------     
+        
+    
+    }
+
+    public StudExTestStage(){
+        GridPane gp = new GridPane();
+        Scene scene = new Scene(gp,600,500);
+        
+    }
+    
+    public initdisplayquestionscreen(){
+        Label lblFir = new Label("QuestionExample");
+        gp.add(lblFir, 0, 2, 3, 1);
+        
+        Label lblpt = new Label("pt"); //add value of points given 
+        gp.add(lblpt, 3, 2);
+        
+        //3. add Button
+        Button subtes = new Button();
+        subtes.setText("Submit Test");
+        gp.add(subtes, 4, 4);
+        
+        //Radio buttons 
         ToggleGroup group = new ToggleGroup();
         RadioButton button1 = new RadioButton("choice1");
         button1.setToggleGroup(group);
@@ -97,9 +105,9 @@ public class StudentExampleTest extends Application {
         RadioButton button4 = new RadioButton("choice4");
         button4.setToggleGroup(group);
         gp.add(button4, 4, 3);
-    
+        
     }
-
+    
     
     /**
      * @param args the command line arguments

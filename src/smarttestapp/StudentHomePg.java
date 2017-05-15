@@ -29,7 +29,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-
+import 
 /**
  *
  * @author csc190
@@ -82,6 +82,8 @@ public class StudentHomePg extends Application {
         
         final Button startButton = new Button("Start");
         startButton.setOnAction((ActionEvent e) -> {
+            StudExTestStage newst = new StudExTestStage();
+            
             
         });
      
