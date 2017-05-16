@@ -77,7 +77,7 @@ public class TeacherHomepage extends Application {
         HBox hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.CENTER);
         hbBtn.getChildren().add(btnLogout);
-        gp.add(hbBtn, 6, 0);
+        gp.add(hbBtn, 4, 0);
        
         btnLogout.setOnAction((ActionEvent e) -> {
             //go to homepage scene of SmartTest
@@ -93,6 +93,15 @@ public class TeacherHomepage extends Application {
         hbTeacherlbl.getChildren().add(lblTeachertestheading);
         gp.add(lblTeachertestheading,0,1);
         
+         Button btnDptLearningOutcome = new Button("Department Learning Outcome");
+         gp.add(btnDptLearningOutcome,3,1);
+         btnDptLearningOutcome.setOnAction((ActionEvent e) -> {
+            //need to go to Department Stage
+            
+            
+        });
+         
+        
         Button addNewTestButton = new Button("New Test");
         gp.add(addNewTestButton,0,2);
         addNewTestButton.setOnAction((ActionEvent e) -> {
@@ -102,6 +111,7 @@ public class TeacherHomepage extends Application {
             
             
         });
+        
 
         Button btnUpload = new Button("Upload Learning Outcome");
         gp.add(btnUpload,1,2);
@@ -123,9 +133,18 @@ public class TeacherHomepage extends Application {
             Test a = ttests.get(i);
             Label lbl = new Label(a.Testname);
             Button btn = new Button();
-            btn.setText("Select"+a.Testname);
+            btn.setText("Test info for"+a.Testname);
             btn.setOnAction(new EventHandler<ActionEvent>() {            
-                @Override 
+                @Override //Show test information based on selected test
+                public void handle(ActionEvent event) {
+                    AddQuestionStage ef = new AddQuestionStage();
+                    ef.showAndWait();
+                }
+            });
+            Button btn2 = new Button();
+            btn2.setText("Completion info for"+a.PinId);
+            btn2.setOnAction(new EventHandler<ActionEvent>() {            
+                @Override //Show completion information based on selected test
                 public void handle(ActionEvent event) {
                     AddQuestionStage ef = new AddQuestionStage();
                     ef.showAndWait();
@@ -133,6 +152,7 @@ public class TeacherHomepage extends Application {
             });
             gp.add(lbl, spotcolumn, spot);
             gp.add(btn, spotcolumn+1,spot);
+            gp.add(btn2, spotcolumn+2,spot);
             spot++;//increment the row
             
             
@@ -142,11 +162,11 @@ public class TeacherHomepage extends Application {
  
         Label lbViewPerformancetxt = new Label("- click on the Test to view performance");
         lbViewPerformancetxt.setFont(new Font("Arial", 12));
-        gp.add(lbViewPerformancetxt,6,8);
+        gp.add(lbViewPerformancetxt,4,8);
         
         Label lbViewCompletiontxt = new Label("- click on the Completion to get individual stats");
         lbViewCompletiontxt.setFont(new Font("Arial", 12));
-        gp.add(lbViewCompletiontxt,6,9);
+        gp.add(lbViewCompletiontxt,4,9);
         
         
         
