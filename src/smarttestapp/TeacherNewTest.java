@@ -7,24 +7,23 @@ package smarttestapp;
 
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 import javafx.stage.Stage;
+import static smarttestapp.AddQuestionStage.instance;
 
 
 import smarttestapp.model.Test;
@@ -33,64 +32,48 @@ import smarttestapp.model.Test;
  *
  * @author csc190
  */
-public class SmartTestTeacherApp extends Application {
-    /*
-    @Override
-    public void start(Stage Stage) {
-        
-               
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
-        
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        
-        Scene scene = new Scene(root, 950,620);
-        
-        Stage.setTitle("Smart Test");
-        
-        Stage.setScene(scene);
-        Stage.show();
-    }*/
+public class TeacherNewTest extends Stage {
+    
     private TableView<Test> table = new TableView<Test>();
-        @Override
-    public void start(Stage stage) {
+    protected ScrollPane sp;
+    protected GridPane gp;
+    static TeacherNewTest instance = null;
+   
+    public TeacherNewTest()
+   {
+        
+        sp = new ScrollPane();
+        gp = new GridPane();
+        
+        sp.setContent(gp);
+        instance = this;
+        Scene scene = new Scene(sp, 750, 900);
+        this.setTitle("New Test");
+        this.setScene(scene);
+       
+    }
+    
+    
+    public void initcreatetestscreen() {
         
         Scene scene = new Scene(new Group());
-        stage.setTitle("SmartTest");
+      /*  stage.setTitle("SmartTest");
         stage.setWidth(950);
-        stage.setHeight(620);
+        stage.setHeight(620);*/
         
-        final Label lblTitle = new Label("NEW TEST");
-        //lblTitle.setFont(new Font("Arial", 14));
- 
-        final Label lblTitle2 = new Label("Test Name:");
-        //lblTitle2.setFont(new Font("Arial", 12));
+        Label lblTitle = new Label("NEW TEST");
+       
+        Label lblTitle2 = new Label("Test Name:");
         
-        final TextField addTestName = new TextField();
+        
+        TextField addTestName = new TextField();
         addTestName.setPromptText("Test Name");
         
-        final Label lblPinNr = new Label("Pin Number:");
-        //lblPinNr.setFont(new Font("Arial", 12));
+        Label lblPinNr = new Label("Pin Number:");
+        TextField addPinId = new TextField();
+        addPinId.setPromptText("Test Name");
         
-        //creating checkbox
-        //A checkbox without a caption
-        //CheckBox cb1 = new CheckBox();
-        
-        
-        
-        //addFirstName.setMaxWidth(firstNameCol.getPrefWidth());
-        //final Label label = new Label("User Database");
-        //label.setFont(new Font("Arial", 20));
- 
+         
         table.setEditable(true);
         
         TableColumn checkBoxCol = new TableColumn("Select");
@@ -159,7 +142,7 @@ public class SmartTestTeacherApp extends Application {
         });
         
         final HBox hb = new HBox();
-        hb.getChildren().addAll(lblTitle2, addTestName, lblPinNr);
+        hb.getChildren().addAll(lblTitle2, addTestName, lblPinNr, addPinId);
         hb.setSpacing(3);
         
         final HBox hb1 = new HBox();
@@ -177,16 +160,18 @@ public class SmartTestTeacherApp extends Application {
  
         ((Group) scene.getRoot()).getChildren().addAll(vbox);
 
-        stage.setScene(scene);
-        stage.show();
+       // stage.setScene(scene);
+        //stage.show();
     }
+
+    
     
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+ /*   public static void main(String[] args) {
         launch(args);
-    }
+    }*/
     
 }

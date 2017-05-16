@@ -5,7 +5,6 @@
  */
 package smarttestapp.model;
 
-import smarttestapp.model.Question;
 import java.util.ArrayList;
 
 /**
@@ -13,10 +12,31 @@ import java.util.ArrayList;
  * @author csc190
  */
 public class Test implements java.io.Serializable {
-    ArrayList<Question> myListofQuestions = new ArrayList(); 
-    String Testname;
+    
+    //data members
+    public ArrayList<Question> myListofQuestions = new ArrayList(); 
+    public String Testname;
+    public String PinId;
 
     
+    
+    public void Test(){
+    
+        
+;    }
+
+    public void Test(String inTestname, String inPinId){
+        this.Testname=inTestname;
+        this.PinId=inPinId;
+    
+    }
+    
+    public void Test(ArrayList<Question> myListofQuestions, String Testname, String PinId){
+        this.myListofQuestions = myListofQuestions;
+        this.Testname=Testname;
+        this.PinId=PinId;
+    
+    }
     
    public void addQuestions(Question q) {
 
@@ -29,6 +49,13 @@ public class Test implements java.io.Serializable {
        
        //
        Testname = testnameinp;
+   
+   }
+   
+  public void addTestPin(String testpinidinp){
+       
+       //
+       PinId = testpinidinp;
    
    }
 }

@@ -37,7 +37,7 @@ public class AddQuestionStage extends Stage {
         
         sp.setContent(gp);
         instance = this;
-        Scene scene = new Scene(sp, 600, 500);
+        Scene scene = new Scene(sp, 750, 900);
         this.setTitle("Add Question");
         this.setScene(scene);
        
@@ -46,26 +46,20 @@ public class AddQuestionStage extends Stage {
     public void initaddquestionscreen()
     {
         
-        final Label labelq = new Label("Question:");
-      //  labelq.setFont(new Font("Arial", 14));
+        Label labelq = new Label("Question:");
+        TextField addq = new TextField();
+        addq.setPromptText("Type Question Here");
         
-        final TextField addq = new TextField();
-        addq.setPromptText("question");
+        Label labela = new Label("Answer:");//add the nametest variable - concatination
+        TextField adda = new TextField();
+        adda.setPromptText("Type Answer Here");
         
-        final Label labela = new Label("Answer:");//add the nametest variable - concatination
-       // labela.setFont(new Font("Arial", 14));
+        Label labelch = new Label("Write in choices (separating them by a comma) :");//add the nametest variable - concatination
         
-        final TextField adda = new TextField();
-        adda.setPromptText("answer");
-        
-        final Label labelch = new Label("Write in choices (separating them by a comma) :");//add the nametest variable - concatination
-        //labelch.setFont(new Font("Arial", 14));
-        
-        final TextField addch = new TextField();
+        TextField addch = new TextField();
         addch.setPromptText("choices");
         
-        final Label labello = new Label("Learning Outcomes:");//add the nametest variable - concatination
-       // labello.setFont(new Font("Arial", 14));
+        Label labello = new Label("Learning Outcomes:");//add the nametest variable - concatination
         
         final Button addButton = new Button("Add");
         addButton.setOnAction((ActionEvent e) -> {
@@ -147,13 +141,7 @@ public class AddQuestionStage extends Stage {
     protected ScrollPane sp;
     protected GridPane gp;
     static AddQuestionStage instance = null;
-    
-   int i =0;
-   int count = 0;
-   Label lblname ;
-   Label lbldescription ;
-   Label lblprice;
-   ImageView theimageview;
+   
    
    CheckBox chksport1, chksport2, chksport3;
     VBox vbchecks;

@@ -17,7 +17,7 @@ public class Question implements java.io.Serializable {
     String QUESTION;
     String correctanswer;
     String pointvalue;
-    
+    //ArrayList<LearningOutcome> myListofLearningOutcome= new ArrayList();
 
     public Question() {
 
