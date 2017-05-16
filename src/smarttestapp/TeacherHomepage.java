@@ -60,7 +60,7 @@ public class TeacherHomepage extends Application {
         
         sp.setContent(gp);
         instance = this;
-        Scene scene = new Scene(sp, 750, 900);
+        Scene scene = new Scene(sp, 900, 900);
         stage.setTitle("SmartTest");
         stage.setScene(scene);
         
@@ -81,6 +81,8 @@ public class TeacherHomepage extends Application {
        
         btnLogout.setOnAction((ActionEvent e) -> {
             //go to homepage scene of SmartTest
+            
+            
         });
         
         Label lblTeachertestheading = new Label("TEACHER TESTS");
@@ -106,9 +108,19 @@ public class TeacherHomepage extends Application {
         btnUpload.setOnAction((ActionEvent e) -> {
             
         });
+        //TABLE CREATION
+        Label lblTableTitleDateCreate = new Label("Date Created");
+        Label lblTableTitleTest = new Label("Test");
+        Label lblTableTitleCompletion = new Label("Completion");
         
+        gp.add(lblTableTitleDateCreate,0,3);
+        gp.add(lblTableTitleTest,1,3);
+        gp.add(lblTableTitleCompletion,2,3);
+        
+        int spot = 4;
+        int spotcolumn=0;
         for(int i=0; i<ttests.size(); i++){
-             Test a = ttests.get(i);
+            Test a = ttests.get(i);
             Label lbl = new Label(a.Testname);
             Button btn = new Button();
             btn.setText("Select"+a.Testname);
@@ -119,9 +131,14 @@ public class TeacherHomepage extends Application {
                     ef.showAndWait();
                 }
             });
-            gp.add(lbl, i, 3);
-            gp.add(btn, i, 4);
+            gp.add(lbl, spotcolumn, spot);
+            gp.add(btn, spotcolumn+1,spot);
+            spot++;//increment the row
+            
+            
         }
+        
+        //BOTTOM OF PAGE
  
         Label lbViewPerformancetxt = new Label("- click on the Test to view performance");
         lbViewPerformancetxt.setFont(new Font("Arial", 12));
