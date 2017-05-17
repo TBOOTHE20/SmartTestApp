@@ -168,14 +168,7 @@ public class TeacherHomepage extends Application {
         lbViewCompletiontxt.setFont(new Font("Arial", 12));
         gp.add(lbViewCompletiontxt,4,9);
         
-        
-        
-       // print();
        
-        
-  
-        
-       // gp.getChildren().addAll();
         
         stage.setScene(scene);
         stage.show();

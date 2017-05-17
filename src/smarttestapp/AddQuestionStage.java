@@ -8,19 +8,18 @@ package smarttestapp;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import smarttestapp.model.Question;
 
 /**
  *
@@ -29,9 +28,9 @@ import javafx.stage.Stage;
 public class AddQuestionStage extends Stage {
     
         
-    public AddQuestionStage()
+    public AddQuestionStage(Question newq)
    {
-        
+        this.question = newq;
         sp = new ScrollPane();
         gp = new GridPane();
         
@@ -41,14 +40,12 @@ public class AddQuestionStage extends Stage {
         this.setTitle("Add Question");
         this.setScene(scene);
        
-    }
-    
-    public void initaddquestionscreen()
-    {
-        
+           
         Label labelq = new Label("Question:");
-        TextField addq = new TextField();
-        addq.setPromptText("Type Question Here");
+        this.questionname = new TextField();
+        Button addbtn = new Button();
+        addbtn.setText("Save");
+        
         
         Label labela = new Label("Answer:");//add the nametest variable - concatination
         TextField adda = new TextField();
@@ -124,15 +121,7 @@ public class AddQuestionStage extends Stage {
         gp.getChildren().addAll(vbox);
         
         
-       
-        
-        
-       
-        
-        
-       
- 
-    
+           
     }
     
     
@@ -141,6 +130,12 @@ public class AddQuestionStage extends Stage {
     protected ScrollPane sp;
     protected GridPane gp;
     static AddQuestionStage instance = null;
+    protected TextField questionname;
+    protected TextField answer;
+    protected TextField choices;
+    protected TextField pointvalue;
+    protected TextField learningOutcomes;
+    protected Question questionn;
    
    
    CheckBox chksport1, chksport2, chksport3;

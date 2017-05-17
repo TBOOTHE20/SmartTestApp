@@ -20,8 +20,17 @@ public class Question implements java.io.Serializable {
     //ArrayList<LearningOutcome> myListofLearningOutcome= new ArrayList();
 
     public Question() {
+        
+        
 
     }
+    
+    public Question(String ques){
+        
+        this.QUESTION = ques;
+    
+    }
+            
 
     public Question (ArrayList<Options> inpListofOptions){
         this.myListofOptions = inpListofOptions;
