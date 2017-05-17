@@ -27,10 +27,24 @@ import smarttestapp.model.Question;
  */
 public class AddQuestionStage extends Stage {
     
+    public AddQuestionStage()
+   {
+        
+        sp = new ScrollPane();
+        gp = new GridPane();
+        
+        sp.setContent(gp);
+        instance = this;
+        Scene scene = new Scene(sp, 750, 900);
+        this.setTitle("Add Question");
+        this.setScene(scene);
+        
+   }
+    
         
     public AddQuestionStage(Question newq)
    {
-        this.question = newq;
+        this.questionn = newq;
         sp = new ScrollPane();
         gp = new GridPane();
         
@@ -117,7 +131,7 @@ public class AddQuestionStage extends Stage {
         VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(labelq, addq, hb2, labello ,root, hb1);
+        vbox.getChildren().addAll(labelq, hb2, labello ,root, hb1);
         gp.getChildren().addAll(vbox);
         
         

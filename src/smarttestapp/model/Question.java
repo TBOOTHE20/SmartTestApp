@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class Question implements java.io.Serializable {
 
     ArrayList<Options> myListofOptions= new ArrayList();
-    String QUESTION;
-    String correctanswer;
-    String pointvalue;
+    public String question;
+    protected String correctanswer;
+    protected String pointvalue;
     //ArrayList<LearningOutcome> myListofLearningOutcome= new ArrayList();
 
     public Question() {
@@ -27,7 +27,7 @@ public class Question implements java.io.Serializable {
     
     public Question(String ques){
         
-        this.QUESTION = ques;
+        this.question = ques;
     
     }
             
@@ -36,11 +36,11 @@ public class Question implements java.io.Serializable {
         this.myListofOptions = inpListofOptions;
     }
     
-    public void addQuestion(String quesinput)
+   /* public void addQuestion(String quesinput)
        {
             this.QUESTION= quesinput;
        }
-    
+   */ 
     public void addPointValue(String pointinput)
        {
             this.correctanswer = pointinput;
