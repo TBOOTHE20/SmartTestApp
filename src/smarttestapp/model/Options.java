@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class Options implements java.io.Serializable{
     //data members
     protected ArrayList<String> inplistofOptions =new ArrayList<String>();
-    
+    int lengthofarray;
     
    
     
@@ -38,13 +38,13 @@ public class Options implements java.io.Serializable{
     
     }
     
-    public int getlength(){
+    public void Optionlistsize(){
     
-        int x;
-        x = this.getlength();
-        return x; 
+        lengthofarray = this.inplistofOptions.size();
     
     }
+    
+    public int getsize(){return lengthofarray;}
     
    
     

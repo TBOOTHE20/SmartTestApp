@@ -59,6 +59,7 @@ public class StudentExampleTest extends Stage {
         x2.addOptionvalue("6");
         x2.addOptionvalue("8");
         q2.addOptions(x2);
+        x2.Optionlistsize();//update length variable
         t.addQuestions(q2);//adding list of questions
         
         gp = new GridPane();
@@ -82,10 +83,14 @@ public class StudentExampleTest extends Stage {
             Label lblpointvalue = new Label (ques.pointvalue+"pt");
             gp.add(lblques,ccolumn,rrow);
             gp.add(lblpointvalue,ccolumn+1,rrow);
-            for(int y = 0 ; y<t.myListofQuestions.get(i).myListofOptions.getlength();y++){//y for options
+            
+            //while Array list not empty do toggle
+            
+            ToggleGroup group = new ToggleGroup();
+            int sizzze= t.myListofQuestions.get(i).myListofOptions.getsize();
+            for(int y = 0 ; y<sizzze;y++){//y for options
                 
                 //radio button
-                ToggleGroup group = new ToggleGroup();
                 RadioButton buttonChoice = new RadioButton(t.myListofQuestions.get(i).myListofOptions.getOptionValue(y));
                 counter++;//to count how many choices by incrementing
                 buttonChoice.setToggleGroup(group);
