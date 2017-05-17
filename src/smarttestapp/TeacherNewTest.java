@@ -103,6 +103,7 @@ public class TeacherNewTest extends Stage {
         addQuestionButton.setOnAction((ActionEvent e) -> {
             
              AddQuestionStage ef = new AddQuestionStage();
+             ef.initAddQuestionStage();
              ef.showAndWait();
                          
             

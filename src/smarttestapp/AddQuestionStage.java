@@ -40,11 +40,11 @@ public class AddQuestionStage extends Stage {
         this.setScene(scene);
         
    }
-    /*
+    
         
-    public voidAddQuestionStage(Question newq)
+    public void initAddQuestionStage()
    {
-        this.questionn = newq;
+       // this.questionn = newq;
         sp = new ScrollPane();
         gp = new GridPane();
         
@@ -137,7 +137,7 @@ public class AddQuestionStage extends Stage {
         
            
     }
-    */
+    
     
     //data members
    
