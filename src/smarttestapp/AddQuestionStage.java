@@ -40,9 +40,9 @@ public class AddQuestionStage extends Stage {
         this.setScene(scene);
         
    }
-    
+    /*
         
-    public AddQuestionStage(Question newq)
+    public voidAddQuestionStage(Question newq)
    {
         this.questionn = newq;
         sp = new ScrollPane();
@@ -137,7 +137,7 @@ public class AddQuestionStage extends Stage {
         
            
     }
-    
+    */
     
     //data members
    

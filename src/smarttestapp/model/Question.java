@@ -36,11 +36,11 @@ public class Question implements java.io.Serializable {
         this.myListofOptions = inpListofOptions;
     }
     
-   /* public void addQuestion(String quesinput)
+    public void addQuestion(String quesinput)
        {
-            this.QUESTION= quesinput;
+            this.question= quesinput;
        }
-   */ 
+   
     public void addPointValue(String pointinput)
        {
             this.correctanswer = pointinput;

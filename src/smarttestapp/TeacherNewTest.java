@@ -101,10 +101,10 @@ public class TeacherNewTest extends Stage {
         Button addQuestionButton = new Button("Add Question");
         gp.add(addQuestionButton,0,2);
         addQuestionButton.setOnAction((ActionEvent e) -> {
-            AddQuestionStage newquestion = new AddQuestionStage();
-             newquestion.initaddquestionscreen();
-             newquestion.showAndWait();
             
+             AddQuestionStage ef = new AddQuestionStage();
+             ef.showAndWait();
+                         
             
         });
         
@@ -127,10 +127,10 @@ public class TeacherNewTest extends Stage {
         gp.add(lblTableTitleChoices,2,3);
         gp.add(lblTableTitlePointValue,3,3);
         gp.add(lblTableTitleLearningOutcome,4,3);
-        
+        /*
         int spot = 4;
         int spotcolumn=0;
-        for(int i=0; i<ttests.size(); i++){
+        for(int i=0; i<nt.size(); i++){
             Test a = ttests.get(i);
             Label lbl = new Label(a.Testname);
             Button btn = new Button();
@@ -157,7 +157,7 @@ public class TeacherNewTest extends Stage {
             spot++;//increment the row
             
             
-        }
+        }*/
         
         //BOTTOM OF PAGE
  
