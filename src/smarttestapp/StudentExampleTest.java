@@ -5,76 +5,114 @@
  */
 package smarttestapp;
 
-import javafx.application.Application;
-import static javafx.application.Application.launch;
-import javafx.beans.property.SimpleStringProperty;
+import java.util.ArrayList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import smarttestapp.model.Options;
+import smarttestapp.model.Question;
+import smarttestapp.model.Test;
 
 /**
  *
  * @author csc190
  */
-public class StudentExampleTest extends Application {
+public class StudentExampleTest extends Stage {
+    //Scene gpStudExTest;
+    //data memebers
+    Stage stage;
     
-     @Override
-    public void start(Stage primaryStage) {
-        //1. add label Login Form/Occupies 2 columns
-        GridPane gp = new GridPane();
-        Label lblTitle = new Label("Test:");
-        gp.add(lblTitle, 0, 0, 2, 1);
+    ArrayList<Question> myListofQuestions = new ArrayList();
+    //data members 
+        protected ScrollPane sp;
+        protected GridPane gp;
+        static StudentExampleTest instance = null;
+        protected Label subtest;
+ 
+    
+    public void StudentExampleTest(){
+        //this.choices = new Options(ex);
+        //this.q = new Question();
+        Test t = new Test(); //making test 
+        t.addTestName("Math 105"); //making test math 105
+        Question q = new Question(); 
+        q.addQuestion("What is 2+2?"); //Sample question
+        q.addAnswer("4"); //Sample Answer
+        q.addPointValue("5");
+        Options x = new Options();
+        x.addOptionvalue("6");        
+        q.addOptions(x);
+        t.addQuestions(q);//adding list of questions
         
-        //4. add handler
-        subtes.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                //String Start = tfFir.getText();
-                //String pwd = pf.getText();
+        Question q2 = new Question(); 
+        q2.addQuestion("What is 4+4?"); //Sample question
+        q2.addAnswer("8"); //Sample Answer
+        q2.addPointValue("10");
+        Options x2 = new Options();
+        x2.addOptionvalue("6");
+        x2.addOptionvalue("8");
+        q2.addOptions(x2);
+        t.addQuestions(q2);//adding list of questions
+        
+        gp = new GridPane();
+        sp = new ScrollPane();
+        sp.setContent(gp);
+        instance = this;
+        Scene scene = new Scene(sp,550,250);
+        this.setTitle("Student");
+        this.setScene(scene);  
+        
+        int rrow=4;
+        int ccolumn = 0;
+        int counter;
+        
+        
+        //for each question in my test called t I will print out the question name the point value and the choices
+        for(int i = 0; i<t.myListofQuestions.size();i++){//i for ques
+            counter = 0;
+            Question ques = t.myListofQuestions.get(i);//gets the ith question in test list
+            Label lblques = new Label (ques.question);
+            Label lblpointvalue = new Label (ques.pointvalue+"pt");
+            gp.add(lblques,ccolumn,rrow);
+            gp.add(lblpointvalue,ccolumn+1,rrow);
+            for(int y = 0 ; y<t.myListofQuestions.get(i).myListofOptions.getlength();y++){//y for options
                 
-            }
-        });
-               
-        Scene scene = new Scene(gp, 550, 250);
-        /*scene.getStylesheets().add(
-                Login.class.getResource("newCascadeStyleSheet.css").toExternalForm()
-        );*/
+                //radio button
+                ToggleGroup group = new ToggleGroup();
+                RadioButton buttonChoice = new RadioButton(t.myListofQuestions.get(i).myListofOptions.getOptionValue(y));
+                counter++;//to count how many choices by incrementing
+                buttonChoice.setToggleGroup(group);
+                gp.add(buttonChoice, y, rrow*2+1); 
+                
+                
+           
+            }//choice loop
+            
+            
+            
+        }//question loop
         
-        primaryStage.setTitle("Student");
-        primaryStage.setScene(scene);
-        primaryStage.show();
         
-        //------     
         
-    
+        
+        
+         
     }
-
-    public StudExTestStage(){
-        GridPane gp = new GridPane();
-        Scene scene = new Scene(gp,600,500);
+/* 
+    public void initStudTestScreen()
+    {
+        Label lblTitle = new Label("Test:");
+        this.gp.add(lblTitle, 0, 0, 2, 1);
         
-    }
-    
-    public initdisplayquestionscreen(){
         Label lblFir = new Label("QuestionExample");
-        gp.add(lblFir, 0, 2, 3, 1);
+        this.gp.add(lblFir, 0, 2, 3, 1);
         
         Label lblpt = new Label("pt"); //add value of points given 
         gp.add(lblpt, 3, 2);
@@ -105,15 +143,22 @@ public class StudentExampleTest extends Application {
         RadioButton button4 = new RadioButton("choice4");
         button4.setToggleGroup(group);
         gp.add(button4, 4, 3);
-        
+            
+            //4. add handler
+        subtes.setOnAction(new EventHandler<ActionEvent>() {
+            
+                @Override
+                public void handle(ActionEvent event) {
+                //String Start = tfFir.getText();
+                //String pwd = pf.getText();
+                }
+            });
+            
     }
+    */
+
     
+               
+       
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
-    
-}
+}           

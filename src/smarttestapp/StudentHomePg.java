@@ -29,12 +29,15 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import 
+
 /**
  *
  * @author csc190
  */
 public class StudentHomePg extends Application {
+    Scene gpStudExTest;
+    Stage thestage;
+    
     
     private TableView<Person> table = new TableView<Person>();
     /*private final ObservableList<Person> data =
@@ -42,12 +45,13 @@ public class StudentHomePg extends Application {
             
         );
    */
-    public static void main(String[] args) {
+   public static void main(String[] args) {
         launch(args);
     }
  
     @Override
     public void start(Stage stage) {
+        
         Scene scene = new Scene(new Group());
         stage.setTitle("Student");
         stage.setWidth(700);
@@ -74,17 +78,15 @@ public class StudentHomePg extends Application {
         gradeCol.setCellValueFactory(
                 new PropertyValueFactory<Person, String>("grade"));
  
-        
-        
-        
+
         //table.setItems(data);
         table.getColumns().addAll(testCol, gradeCol);
         
         final Button startButton = new Button("Start");
         startButton.setOnAction((ActionEvent e) -> {
-            StudExTestStage newst = new StudExTestStage();
-            
-            
+            StudentExampleTest st = new StudentExampleTest();
+            st.StudentExampleTest();//will display questions from that object(egg)
+            st.showAndWait();
         });
      
         final HBox hb2 = new HBox();
@@ -101,7 +103,18 @@ public class StudentHomePg extends Application {
        
         stage.setScene(scene);
         stage.show();
+        
+        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
  
     public static class Person {
  
@@ -138,4 +151,4 @@ public class StudentHomePg extends Application {
     }
 } 
 
-
+ 
