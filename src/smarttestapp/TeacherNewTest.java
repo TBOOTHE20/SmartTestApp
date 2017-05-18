@@ -179,12 +179,12 @@ public class TeacherNewTest extends Stage {
         System.out.print("I'm back with a question called" + t.myListofQuestions.get(0).question);
         //repopulate table by accesing my array list of questions
         //which was already added by the addQuestion function in my test class
-/*
-        int spot = 4;
+        //
+        int spot = 6;
         int spotcolumn = 0;
-        for (int i = 0; i < nt.myListofQuestions.size(); i++) {
+        for (int i = 0; i < t.myListofQuestions.size(); i++) {
             Question q = new Question(); //create a question egg to hold questions takedn from list
-            q = nt.myListofQuestions.get(i);//get the ith question egge from list
+            q = t.myListofQuestions.get(i);//get the ith question egge from list
             Label lblques = new Label(q.question);
             Label lblansw = new Label(q.correctanswer);
             Label lblptval = new Label(q.pointvalue);
@@ -196,14 +196,14 @@ public class TeacherNewTest extends Stage {
                     System.out.print("I want to select this line to be deleted");
                 }
             });
-
-            gp.add(lblques, spotcolumn, spot);
-            gp.add(lblansw, spotcolumn + 1, spot);
-            gp.add(lblptval, spotcolumn + 2, spot);
-            gp.add(btnselect, spotcolumn + 3, spot);
+            gp.add(btnselect, spotcolumn, spot);
+            gp.add(lblques, spotcolumn+1, spot);
+            gp.add(lblansw, spotcolumn + 2, spot);
+            gp.add(lblptval, spotcolumn + 3, spot);
+            
             spot++;//increment the row
 
-        }*/
+        }
     }
 
     /**

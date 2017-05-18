@@ -107,7 +107,7 @@ public class AddQuestionStage extends Stage {
                 Test bxt=new Test();
                 bxt.addQuestions(questionn);
                 
-                System.out.print("LOOK HER"+bxt.myListofQuestions.get(0).question);
+                System.out.print("LOOK HERE"+bxt.myListofQuestions.get(0).question);
                 instance2.refresh(bxt);
             }
         });
