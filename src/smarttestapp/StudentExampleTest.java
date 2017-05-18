@@ -40,21 +40,19 @@ public class StudentExampleTest extends Stage {
     
     public void StudentExampleTest(){ //passing a Test testcreated
         //this.Test = testcreated; 
-        
-        
+
         //this.choices = new Options(ex);
         //this.q = new Question();
         Test t = new Test(); //making test 
         t.addTestName("Math 105"); //making test math 105
         //String tes = t.Testname;
         //Label lbltes = new Label(tes);
-        
-        
+
         Question q = new Question(); 
         q.addQuestion("What is 2+2?"); //Sample question
         q.addAnswers("4"); //Sample Answer
         //q.addPointValue("5");
-        q.addPointValues("6");
+        q.addPointValues("2");
         Options x = new Options();
         x.addOptionvalue("4");   
         x.addOptionvalue("8"); 
@@ -66,7 +64,7 @@ public class StudentExampleTest extends Stage {
         Question q2 = new Question(); 
         q2.addQuestion("What is 4+4?"); //Sample question
         q2.addAnswers("8"); //Sample Answer
-        q2.addPointValues("10");
+        q2.addPointValues("3");
         Options x2 = new Options();
         
         x2.addOptionvalue("6");
@@ -137,13 +135,10 @@ public class StudentExampleTest extends Stage {
                 //String pwd = pf.getText();
                 this.close();
                 //save();
-                });
-            
-            
-            
+                });     
     }
-    /*
-        public void save(){
+    
+        /*public void save(){
             //employee.name = this.tfName.getText();
             //Test.testcreated = Integer.parseInt(this.buttonChoice.getText();
             
@@ -160,7 +155,7 @@ public class StudentExampleTest extends Stage {
                 q.pointvalue = 0;
             }
         }
-      */  
+        */
     }
     
 
