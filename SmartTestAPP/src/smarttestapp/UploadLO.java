@@ -5,8 +5,8 @@
  */
 package smarttestapp;
 
-import java.awt.Image;
-import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
@@ -14,14 +14,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -46,6 +44,7 @@ public class UploadLO extends Application {
      HBox hbBtn, hbTeacherlbl; 
      int spot, spotcolumn;
     TextField tfCat1, tfCat2;
+    String cate1, cate2, loContent;
      
     @Override
     public void start(Stage primaryStage) {
@@ -125,8 +124,36 @@ public class UploadLO extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                //String cate1 = tfCat1.getText();
-                //String cate2 = tfCat2.getText();
+                cate1 = tfCat1.getText();
+                cate2 = tfCat2.getText();
+                if(cate1 == null && cate2 == null){
+                     Alert al = new Alert(Alert.AlertType.INFORMATION);
+                     al.setContentText("Please fill in the categories");
+                     al.showAndWait();
+                }
+                else{
+                    Category2 [] arrCat = new Category2[]{
+                        new Category2(cate2)
+                    };
+                    Category1 [] arrCat1 = new Category1[]{
+                        new Category1(cate1, arrCat)
+                    };
+                    LearningOutcomes newLO = new LearningOutcomes("LearningOutcome1",arrCat1);
+                    String url = "http://localhost/smart.php";
+                    loContent = Utils.toStr(newLO);
+                    String qry = "INSERT INTO loutcome (name, lval) VALUES('"+ cate1 +"', '"+ loContent +"')";
+                    Utils.execNonQuery(qry);
+                    String response;
+                    try {
+                        response = Utils.httpsPost(url, loContent);
+                        System.out.println(response);
+                    } catch (Exception ex) {
+                        Logger.getLogger(UploadLO.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    Alert al = new Alert(Alert.AlertType.INFORMATION);
+                        al.setContentText("The user has been added to the database.");
+                        al.showAndWait();  
+                    }
                 thestage.setScene(scene2); 
                 
             }
