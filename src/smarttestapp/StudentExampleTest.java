@@ -46,9 +46,10 @@ public class StudentExampleTest extends Stage {
         //String tes = t.Testname;
         //Label lbltes = new Label(tes);
         
+        
         Question q = new Question(); 
         q.addQuestion("What is 2+2?"); //Sample question
-        q.addAnswer("4"); //Sample Answer
+        q.addAnswers("4"); //Sample Answer
         //q.addPointValue("5");
         q.addPointValues("6");
         Options x = new Options();
@@ -61,7 +62,7 @@ public class StudentExampleTest extends Stage {
         
         Question q2 = new Question(); 
         q2.addQuestion("What is 4+4?"); //Sample question
-        q2.addAnswer("8"); //Sample Answer
+        q2.addAnswers("8"); //Sample Answer
         q2.addPointValues("10");
         Options x2 = new Options();
         
@@ -121,13 +122,27 @@ public class StudentExampleTest extends Stage {
             
                 @Override
                 public void handle(ActionEvent event) {
-                    save(); //this will be saving the answers that student inputs for each question
+                    //q.question = 
+                   // save(); //this will be saving the answers that student inputs for each question
                 }
             });
     }        
-        public void save(){
-            //t. =
-        }
+        /*public void save(){
+            //if the button selected is equal to the correct answer
+            if(buttonChoice.isSelected() == q.correctanswer)
+            {
+                //give the point value given
+                q.pointvalue;//don't change the pointvalue
+                //
+                
+            }
+            else{ //if the button pressed is not equal to the correct answer
+                
+                
+                //
+                q.pointvalue = 0;
+            }
+        }*/
         
     }
     

@@ -15,10 +15,7 @@ public class Options implements java.io.Serializable{
     //data members
     protected ArrayList<String> inplistofOptions =new ArrayList<String>();
     int lengthofarray;
-    
-   
-    
-    
+
     public Options (){
         
     }
