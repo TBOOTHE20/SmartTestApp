@@ -31,24 +31,30 @@ public class StudentExampleTest extends Stage {
     
     ArrayList<Question> myListofQuestions = new ArrayList();
     //data members 
-        protected ScrollPane sp;
-        protected GridPane gp;
+        public ScrollPane sp;
+        public GridPane gp;
         static StudentExampleTest instance = null;
-        protected Label subtest;
- 
+        public Label subtest;
+       
     
     public void StudentExampleTest(){
         //this.choices = new Options(ex);
         //this.q = new Question();
         Test t = new Test(); //making test 
         t.addTestName("Math 105"); //making test math 105
+        //String tes = t.Testname;
+        //Label lbltes = new Label(tes);
+        
         Question q = new Question(); 
         q.addQuestion("What is 2+2?"); //Sample question
         q.addAnswer("4"); //Sample Answer
         q.addPointValue("5");
         Options x = new Options();
-        x.addOptionvalue("6");        
+        x.addOptionvalue("7");   
+        x.addOptionvalue("7"); 
+        x.addOptionvalue("7"); 
         q.addOptions(x);
+        x.Optionlistsize();
         t.addQuestions(q);//adding list of questions
         
         Question q2 = new Question(); 
@@ -56,8 +62,10 @@ public class StudentExampleTest extends Stage {
         q2.addAnswer("8"); //Sample Answer
         q2.addPointValue("10");
         Options x2 = new Options();
+        
         x2.addOptionvalue("6");
         x2.addOptionvalue("8");
+        x2.addOptionvalue("82"); 
         q2.addOptions(x2);
         x2.Optionlistsize();//update length variable
         t.addQuestions(q2);//adding list of questions
@@ -70,37 +78,43 @@ public class StudentExampleTest extends Stage {
         this.setTitle("Student");
         this.setScene(scene);  
         
+        
+        
         int rrow=4;
         int ccolumn = 0;
         int counter;
         
-        
+       
         //for each question in my test called t I will print out the question name the point value and the choices
         for(int i = 0; i<t.myListofQuestions.size();i++){//i for ques
-            counter = 0;
+            //counter = 0;
             Question ques = t.myListofQuestions.get(i);//gets the ith question in test list
             Label lblques = new Label (ques.question);
-            Label lblpointvalue = new Label (ques.pointvalue+"pt");
-            gp.add(lblques,ccolumn,rrow);
-            gp.add(lblpointvalue,ccolumn+1,rrow);
+            gp.add(lblques,ccolumn,rrow*2);
+            Label lblpointvalue = new Label (ques.pointvalue + "pt");
+            gp.add(lblpointvalue,ccolumn+1,rrow*2);//+1
+            rrow++;
             
+            
+            //int sizzze= t.myListofQuestions.get(i).myListofOptions.getsize();
+            int sizzze= t.myListofQuestions.get(i).myListofOptions.getsize();
             //while Array list not empty do toggle
             
-            ToggleGroup group = new ToggleGroup();
-            int sizzze= t.myListofQuestions.get(i).myListofOptions.getsize();
+            
             for(int y = 0 ; y<sizzze;y++){//y for options
                 
                 //radio button
                 RadioButton buttonChoice = new RadioButton(t.myListofQuestions.get(i).myListofOptions.getOptionValue(y));
-                counter++;//to count how many choices by incrementing
-                buttonChoice.setToggleGroup(group);
+                //counter++;//to count how many choices by incrementing
+                ToggleGroup sp = new ToggleGroup();
+                buttonChoice.setToggleGroup(sp);
                 gp.add(buttonChoice, y, rrow*2+1); 
                 
                 
            
             }//choice loop
             
-            
+            rrow++;
             
         }//question loop
         
@@ -110,7 +124,7 @@ public class StudentExampleTest extends Stage {
         
          
     }
-/* 
+ 
     public void initStudTestScreen()
     {
         Label lblTitle = new Label("Test:");
@@ -127,7 +141,7 @@ public class StudentExampleTest extends Stage {
         subtes.setText("Submit Test");
         gp.add(subtes, 4, 4);
         
-        //Radio buttons 
+        /*//Radio buttons 
         ToggleGroup group = new ToggleGroup();
         RadioButton button1 = new RadioButton("choice1");
         button1.setToggleGroup(group);
@@ -148,19 +162,21 @@ public class StudentExampleTest extends Stage {
         RadioButton button4 = new RadioButton("choice4");
         button4.setToggleGroup(group);
         gp.add(button4, 4, 3);
-            
+        */    
             //4. add handler
         subtes.setOnAction(new EventHandler<ActionEvent>() {
             
                 @Override
                 public void handle(ActionEvent event) {
-                //String Start = tfFir.getText();
-                //String pwd = pf.getText();
+                    
+                    //StudentHomePg shp = new StudentHomePg();
+                    //shp.();//will display questions from that object(egg)
+                    //shp.showAndWait();
                 }
             });
             
     }
-    */
+    
 
     
                

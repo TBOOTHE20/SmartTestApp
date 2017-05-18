@@ -26,12 +26,12 @@ public class Question implements java.io.Serializable {
        
     public void addQuestion(String quesinput)
        {
-            this.question= quesinput;
+            this.question= quesinput; //points to a specific question
        }
    
     public void addPointValue(String pointinput)
        {
-            this.correctanswer = pointinput;
+            this.correctanswer = pointinput;  //points to correct answer's pt value
        }
 
    
@@ -40,17 +40,13 @@ public class Question implements java.io.Serializable {
         //creat option egg and add values
         Options myListofOptions = new Options();
         this.myListofOptions = v;
-        
-        
-        
-        
-    }
+        }
        
        public void addAnswer(String ansinput)
        {
-            this.correctanswer = ansinput;
+            this.correctanswer = ansinput; //points to correct answer
        }
 
-    
+       
     
 }

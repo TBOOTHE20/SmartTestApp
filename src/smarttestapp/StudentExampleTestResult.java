@@ -5,6 +5,7 @@
  */
 package smarttestapp;
 
+import java.util.ArrayList;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.event.ActionEvent;
@@ -13,20 +14,52 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import static smarttestapp.StudentExampleTest.instance;
+import smarttestapp.model.Question;
 
 /**
  *
  * @author csc190
  */
-public class StudentExampleTestResult extends Application {
+public class StudentExampleTestResult extends Stage {
     
-     @Override
-    public void start(Stage primaryStage) {
-        //1. add label Login Form/Occupies 2 columns
+        //data memebers
+        Stage stage;
+    
+        ArrayList<Question> myListofQuestions = new ArrayList();
+        //data members 
+        public ScrollPane sp;
+        public GridPane gp;
+        static StudentExampleTestResult instance = null;
+        public Label back;
+    
+    public void StudentExampleTestResult(){
+        
+        gp = new GridPane();
+        sp = new ScrollPane();
+        sp.setContent(gp);
+        instance = this;
+        Scene scene = new Scene(sp,550,250);
+        this.setTitle("Student");
+        this.setScene(scene); 
+        
+        //stage.show();
+        
+        
+    
+    }
+        
+        
+        
+        
+    public void initStudTestResultsScreen()
+    {  
+     //1. add label Login Form/Occupies 2 columns
         GridPane gp = new GridPane();
         Label lblTitle = new Label("RESULTS:"); //adding name of course here 
         gp.add(lblTitle, 0, 0, 2, 1);
@@ -66,26 +99,10 @@ public class StudentExampleTestResult extends Application {
                 
             }
         });
-               
-        Scene scene = new Scene(gp, 550, 250);
-        /*scene.getStylesheets().add(
-                Login.class.getResource("newCascadeStyleSheet.css").toExternalForm()
-        );*/
-        
-        primaryStage.setTitle("Student");
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    }   
         
         
     
-    }
 
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        launch(args);
-    }
     
 }

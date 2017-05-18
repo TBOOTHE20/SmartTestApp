@@ -19,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -29,126 +30,91 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import static smarttestapp.StudentExampleTest.instance;
 
 /**
  *
  * @author csc190
  */
 public class StudentHomePg extends Application {
-    Scene gpStudExTest;
-    Stage thestage;
+    //Scene gpStudExTest;
+    //Stage thestage;
+    protected ScrollPane sp;
+    protected GridPane gp;
+    static StudentHomePg instance = null;
     
-    
-    private TableView<Person> table = new TableView<Person>();
-    /*private final ObservableList<Person> data =
-        FXCollections.observableArrayList(
-            
-        );
-   */
-   public static void main(String[] args) {
-        launch(args);
-    }
- 
     @Override
     public void start(Stage stage) {
         
-        Scene scene = new Scene(new Group());
+        //Scene scene = new Scene(new Group());
+        //stage.setTitle("Student");
+        //stage.setWidth(700);
+        //stage.setHeight(600);
+        sp = new ScrollPane();
+        gp = new GridPane();
+        
+        sp.setContent(gp);
+        instance = this;
+        Scene scene = new Scene(sp,550,250);
         stage.setTitle("Student");
-        stage.setWidth(700);
-        stage.setHeight(600);
- 
-        final Label labelstut = new Label("STUDENT TESTS");
-        labelstut.setFont(new Font("Arial", 14));
-        
-        final Label labelpin = new Label("Pincode:");//add the nametest variable - concatination
-        labelpin.setFont(new Font("Arial", 14));
-        
-        final TextField addpin = new TextField();
-        addpin.setPromptText("Pincode");
-        
-        table.setEditable(true);
- 
-        TableColumn testCol = new TableColumn("Test");
-        testCol.setMinWidth(130);
-        testCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("test"));
- 
-        TableColumn gradeCol = new TableColumn("Grade");
-        gradeCol.setMinWidth(100);
-        gradeCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("grade"));
- 
+        stage.setScene(scene); 
 
-        //table.setItems(data);
-        table.getColumns().addAll(testCol, gradeCol);
+        Label labelstut = new Label("STUDENT TESTS");
+        gp.add(labelstut, 0, 0, 2, 1);
         
-        final Button startButton = new Button("Start");
+        Label labelpin = new Label("Pincode:");//add the nametest variable - concatination
+        gp.add(labelpin, 0, 1, 2, 1);
+        
+        TextField addpin = new TextField();
+        gp.add(addpin, 2, 1);
+        
+        Label labeltest = new Label("Test:");//add the nametest variable - concatination
+        gp.add(labeltest, 0, 3);
+        
+        Label labelgrade = new Label("Grade:");//add the nametest variable - concatination
+        gp.add(labelgrade, 2, 3);
+
+        Button startButton = new Button("Start");
+        gp.add(startButton, 3, 1);
         startButton.setOnAction((ActionEvent e) -> {
-            StudentExampleTest st = new StudentExampleTest();
-            st.StudentExampleTest();//will display questions from that object(egg)
-            st.showAndWait();
+            //if empty or not correct show an alert that theres no such pin in the system ..enter again
+            if(addpin == null){
+                     Alert al = new Alert(Alert.AlertType.INFORMATION);
+                     al.setContentText("Wrong Pincode. Enter again.");
+                     al.showAndWait();
+            }
+            //else the pin is correct then proceed to StudentExampleTest -specific test
+            else{
+                    StudentExampleTest st = new StudentExampleTest();
+                    //st.initStudTestScreen();
+                    st.StudentExampleTest();//will display questions from that object(egg)
+                    st.showAndWait();
+                    
+                    }       
         });
-     
-        final HBox hb2 = new HBox();
-        hb2.getChildren().addAll( labelpin, addpin, startButton);
-        hb2.setSpacing(3);
-
-        final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 0, 0, 10));
-        //addNewTestButton, uplLOButton,
-        vbox.getChildren().addAll(labelstut, hb2, table);
-        ((Group) scene.getRoot()).getChildren().addAll(vbox);
+        //-------------------------------
+        //in a while loop /for loop to display or taken tests 
+        //creating a test label example to click on 
+        Button TestnameButton = new Button("TestNameExample");
+        gp.add(TestnameButton, 0, 4);
+        TestnameButton.setOnAction((ActionEvent e) -> {
+           
+            StudentExampleTestResult str = new StudentExampleTestResult();
+            str.StudentExampleTestResult();//will display questions from that object(egg)
+            str.initStudTestResultsScreen();
+            str.showAndWait();
+        });
+        //and here creating a grade display label to look at next to the specific test 
+        Label labelgradedisplayed = new Label("GradeExampleDisplayed");//add the nametest variable - concatination
+        gp.add(labelgradedisplayed, 2, 4);
         
-       
         stage.setScene(scene);
         stage.show();
         
-        
+    }  
+    
+    public static void main(String[] args) {
+        launch(args);
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
- 
-    public static class Person {
- 
-        private final SimpleStringProperty test;
-        private final SimpleStringProperty grade;
-        
-      
-        
- 
-        private Person(String t, String gr) {
-            this.test = new SimpleStringProperty(t);
-            this.grade = new SimpleStringProperty(gr);
-           
-            
-            
-        }
- 
-        public String getTest() {
-            return test.get();
-        }
- 
-        public void setTest(String t) {
-            test.set(t);
-        }
- 
-        public String getGrade() {
-            return grade.get();
-        }
- 
-        public void setGrade(String gr) {
-            grade.set(gr);
-        }
-        
-    }
 } 
-
- 
