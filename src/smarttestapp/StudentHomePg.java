@@ -39,9 +39,10 @@ import static smarttestapp.StudentExampleTest.instance;
 public class StudentHomePg extends Application {
     //Scene gpStudExTest;
     //Stage thestage;
-    protected ScrollPane sp;
-    protected GridPane gp;
-    static StudentHomePg instance = null;
+    ScrollPane sp;
+    GridPane gp;
+    Scene scene1;
+    //static StudentHomePg instance = null;
     
     @Override
     public void start(Stage stage) {
@@ -54,10 +55,10 @@ public class StudentHomePg extends Application {
         gp = new GridPane();
         
         sp.setContent(gp);
-        instance = this;
-        Scene scene = new Scene(sp,550,250);
+        //instance = this;
+        Scene scene1 = new Scene(sp,550,250);
         stage.setTitle("Student");
-        stage.setScene(scene); 
+        stage.setScene(scene1); 
 
         Label labelstut = new Label("STUDENT TESTS");
         gp.add(labelstut, 0, 0, 2, 1);
@@ -101,14 +102,14 @@ public class StudentHomePg extends Application {
            
             StudentExampleTestResult str = new StudentExampleTestResult();
             str.StudentExampleTestResult();//will display questions from that object(egg)
-            str.initStudTestResultsScreen();
+            //str.initStudTestResultsScreen();
             str.showAndWait();
         });
         //and here creating a grade display label to look at next to the specific test 
         Label labelgradedisplayed = new Label("GradeExampleDisplayed");//add the nametest variable - concatination
         gp.add(labelgradedisplayed, 2, 4);
         
-        stage.setScene(scene);
+        stage.setScene(scene1);
         stage.show();
         
     }  

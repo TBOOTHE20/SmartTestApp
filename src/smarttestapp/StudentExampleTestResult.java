@@ -52,15 +52,15 @@ public class StudentExampleTestResult extends Stage {
         
         
     
-    }
+   /* }
         
         
         
         
     public void initStudTestResultsScreen()
-    {  
+    { */ 
      //1. add label Login Form/Occupies 2 columns
-        GridPane gp = new GridPane();
+     
         Label lblTitle = new Label("RESULTS:"); //adding name of course here 
         gp.add(lblTitle, 0, 0, 2, 1);
         
@@ -85,19 +85,20 @@ public class StudentExampleTestResult extends Stage {
         //3. add Button
         Button back = new Button();
         back.setText("Back");
-        gp.add(back, 4, 4);
+        gp.add(back, 5, 4);
         
         
         
         //4. add handler
-        back.setOnAction(new EventHandler<ActionEvent>() {
+        //back.setOnAction(new EventHandler<ActionEvent>() {
             
-            @Override
-            public void handle(ActionEvent event) {
+            //@Override
+            back.setOnAction((ActionEvent e)-> {
+                this.close();
                 //String Start = tfFir.getText();
                 //String pwd = pf.getText();
                 
-            }
+           // }
         });
     }   
         

@@ -34,7 +34,11 @@ public class Question implements java.io.Serializable {
             this.correctanswer = pointinput;  //points to correct answer's pt value
        }
 
-   
+    //i added this here to add point values in 
+    public void addPointValues(String pointvalinp){
+            this.pointvalue = pointvalinp; 
+    }
+    
        public void addOptions(Options v) {
         //add to array
         //creat option egg and add values
