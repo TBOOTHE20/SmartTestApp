@@ -36,9 +36,12 @@ public class StudentExampleTest extends Stage {
         public GridPane gp;
         static StudentExampleTest instance = null;
         public Label subtest;
-       
+        public RadioButton buttonChoice;
     
-    public void StudentExampleTest(){ //passing a Test T
+    public void StudentExampleTest(){ //passing a Test testcreated
+        //this.Test = testcreated; 
+        
+        
         //this.choices = new Options(ex);
         //this.q = new Question();
         Test t = new Test(); //making test 
@@ -118,32 +121,46 @@ public class StudentExampleTest extends Stage {
         gp.add(subtes, 5, 1);
             
             //4. add handler
-        subtes.setOnAction(new EventHandler<ActionEvent>() {
+        //subtes.setOnAction(new EventHandler<ActionEvent>() {
             
-                @Override
+                /*@Override
                 public void handle(ActionEvent event) {
                     //q.question = 
                    // save(); //this will be saving the answers that student inputs for each question
+                   
                 }
-            });
-    }        
-        /*public void save(){
+            });*/
+                
+            subtes.setOnAction((ActionEvent e)-> {
+                
+                //String Start = tfFir.getText();
+                //String pwd = pf.getText();
+                this.close();
+                //save();
+                });
+            
+            
+            
+    }
+    /*
+        public void save(){
+            //employee.name = this.tfName.getText();
+            //Test.testcreated = Integer.parseInt(this.buttonChoice.getText();
+            
             //if the button selected is equal to the correct answer
             if(buttonChoice.isSelected() == q.correctanswer)
             {
+                //this.
                 //give the point value given
                 q.pointvalue;//don't change the pointvalue
                 //
-                
             }
             else{ //if the button pressed is not equal to the correct answer
-                
-                
                 //
                 q.pointvalue = 0;
             }
-        }*/
-        
+        }
+      */  
     }
     
 
