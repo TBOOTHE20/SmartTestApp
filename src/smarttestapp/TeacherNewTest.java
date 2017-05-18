@@ -116,7 +116,12 @@ public class TeacherNewTest extends Stage {
         Button addQuestionButton = new Button("Add Question");
         gp.add(addQuestionButton,0,3);
         addQuestionButton.setOnAction((ActionEvent e) -> {
+            //add the testname and pinid to test egg 
+            nt.Testname=tfTestname.getText();
+             nt.PinId=tfPinId.getText();
+             System.out.print(nt.Testname+""+nt.PinId); 
             //when my add question is clicked I pass the test egg so it can have questions added to it
+            
              AddQuestionStage ef = new AddQuestionStage();
              System.out.print("Hi Im a test and my testname is "+nt.Testname);
              ef.initAddQuestionStage(nt);

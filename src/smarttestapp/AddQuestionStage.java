@@ -19,7 +19,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import smarttestapp.model.Options;
 import smarttestapp.model.Question;
 import smarttestapp.model.Test;
 
@@ -58,7 +57,7 @@ public class AddQuestionStage extends Stage {
         Scene scene = new Scene(sp, 900, 900);
         Test nt = new Test();
         nt = q;
-        this.setTitle("Add Question for Test"+q.Testname+""+nt.Testname);
+        this.setTitle("Add Question for Test named "+nt.Testname);
         this.setScene(scene);
        
            
@@ -83,12 +82,28 @@ public class AddQuestionStage extends Stage {
         
         Label labello = new Label("Learning Outcomes:");//add the nametest variable - concatination
         
+        Question questionn = new Question();//make a new question baby
+        
         Button addButton = new Button("Add");
         addButton.setOnAction((ActionEvent e) -> {
+           
+            /*after creating the question egg above I set the value
+            for all attributes of my question egg by grabbing the information
+            from the textfield using .getText() so 
+            questionname.getText() gets the inputted data from user
+            and that info is then set to my question egg attributes
+            */
+            questionn.question=questionname.getText();
+            System.out.print("The question is "+questionn.question);
             
+            questionn.correctanswer=adda.getText();
+            System.out.print("The answer is "+questionn.correctanswer);
             
-            
-            
+            questionn.pointvalue=tfpv.getText();
+            System.out.print("The pointvalue is "+questionn.pointvalue);
+            //create a teachernewtest screen that will have the new created quesion
+            //added to it
+             
         });
         
         Button cancelButton = new Button("Cancel");
