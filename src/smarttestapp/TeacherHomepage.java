@@ -5,7 +5,6 @@
  */
 package smarttestapp;
 
-import static com.sun.deploy.util.SessionState.save;
 import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -106,8 +105,8 @@ public class TeacherHomepage extends Application {
         gp.add(addNewTestButton,0,2);
         addNewTestButton.setOnAction((ActionEvent e) -> {
             TeacherNewTest newtest = new TeacherNewTest();
-             newtest.initcreatetestscreen();
-             newtest.showAndWait();
+            newtest.initcreatetestscreen();
+            newtest.showAndWait();
             
             
         });
