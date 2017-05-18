@@ -60,7 +60,7 @@ public class TeacherHomepage extends Application {
         
         sp.setContent(gp);
         instance = this;
-        Scene scene = new Scene(sp, 900, 900);
+        Scene scene = new Scene(sp, 1000, 1000);
         stage.setTitle("SmartTest");
         stage.setScene(scene);
         

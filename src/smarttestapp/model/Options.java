@@ -5,19 +5,47 @@
  */
 package smarttestapp.model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author csc190
  */
 public class Options implements java.io.Serializable{
+    //data members
+    protected ArrayList<String> inplistofOptions =new ArrayList<String>();
+    int lengthofarray;
     
-    protected String[]options;
    
     
-    public Options (String [] inpOptions )
-    {
-        this.options = inpOptions;
-            }
     
+    public Options (){
+        
+    }
+    //appending - adding on top 
+    public void addOptionvalue(String optionvalueinput)
+    {
+        this.inplistofOptions.add(optionvalueinput);
+    }
+    
+    public String getOptionValue(int i){
+    
+        String answer = "";
+        answer = this.inplistofOptions.get(i);
+        return answer;
+        
+        
+    
+    }
+    
+    public void Optionlistsize(){
+    
+        lengthofarray = this.inplistofOptions.size();
+    
+    }
+    
+    public int getsize(){return lengthofarray;}
+    
+   
     
 }

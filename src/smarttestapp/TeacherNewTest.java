@@ -31,12 +31,12 @@ import smarttestapp.model.Test;
 public class TeacherNewTest extends Stage {
     
     
-    protected ScrollPane sp;
-    protected GridPane gp;
+    public ScrollPane sp;
+    public GridPane gp;
     static TeacherNewTest instance = null;
-    protected TextField tfTestname;
-    protected TextField tfPinId;
-    protected Test nt;
+    public TextField tfTestname;
+    public TextField tfPinId;
+    public Test nt;
     
    
     public TeacherNewTest()
@@ -47,7 +47,7 @@ public class TeacherNewTest extends Stage {
         
         sp.setContent(gp);
         instance = this;
-        Scene scene = new Scene(sp, 750, 900);
+        Scene scene = new Scene(sp, 850, 900);
         this.setTitle("New Test");
         this.setScene(scene);
        
@@ -87,23 +87,39 @@ public class TeacherNewTest extends Stage {
         gp.add(lbNewtestheading,0,1);
         
         Label lblTestName = new Label("Test Name: ");
-        gp.add(lblTestName,3,1);
-         
+        gp.add(lblTestName,0,2);
         
-        //create a new test baby and add the name and pin id
+        tfTestname = new TextField();
+        gp.add(tfTestname,1,2);
+        
+        Label lblPin = new Label("New Pin Id: ");
+        gp.add(lblPin,2,2);
+        
+        tfPinId = new TextField();
+        gp.add(tfPinId,3,2);
+        
         Test nt = new Test();
-        this.tfTestname = new TextField();
-        this.tfTestname.setText(nt.Testname);
-        this.tfPinId = new TextField();
-        this.tfPinId.setText(nt.PinId); 
-         
+        
+        
+        //for testing text field
+        Button PrintButton = new Button("Print");
+        gp.add(PrintButton,4,2);
+        PrintButton.setOnAction((ActionEvent e) -> {
+            
+             
+             nt.Testname=tfTestname.getText();
+             nt.PinId=tfPinId.getText();
+             System.out.print(nt.Testname+""+nt.PinId);
+            
+        });
         
         Button addQuestionButton = new Button("Add Question");
-        gp.add(addQuestionButton,0,2);
+        gp.add(addQuestionButton,0,3);
         addQuestionButton.setOnAction((ActionEvent e) -> {
-            
+            //when my add question is clicked I pass the test egg so it can have questions added to it
              AddQuestionStage ef = new AddQuestionStage();
-             ef.initAddQuestionStage();
+             System.out.print("Hi Im a test and my testname is "+nt.Testname);
+             ef.initAddQuestionStage(nt);
              ef.showAndWait();
                          
             
@@ -111,7 +127,7 @@ public class TeacherNewTest extends Stage {
         
 
         Button btnDelete = new Button("Delete Question");
-        gp.add(btnDelete,1,2);
+        gp.add(btnDelete,1,3);
         btnDelete.setOnAction((ActionEvent e) -> {
             
         });
@@ -123,11 +139,11 @@ public class TeacherNewTest extends Stage {
         Label lblTableTitlePointValue = new Label("Point Value");
         Label lblTableTitleLearningOutcome = new Label("LearningOutcomes(s)");
                 
-        gp.add(lblTableTitleSelectQuestion,0,3);
-        gp.add(lblTableTitleQuestion,1,3);
-        gp.add(lblTableTitleChoices,2,3);
-        gp.add(lblTableTitlePointValue,3,3);
-        gp.add(lblTableTitleLearningOutcome,4,3);
+        gp.add(lblTableTitleSelectQuestion,0,4);
+        gp.add(lblTableTitleQuestion,1,4);
+        gp.add(lblTableTitleChoices,2,4);
+        gp.add(lblTableTitlePointValue,3,4);
+        gp.add(lblTableTitleLearningOutcome,4,4);
         /*
         int spot = 4;
         int spotcolumn=0;
@@ -177,6 +193,8 @@ public class TeacherNewTest extends Stage {
         
          
     }
+    
+    
 
     
     

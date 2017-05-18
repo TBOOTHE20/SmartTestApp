@@ -19,7 +19,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import smarttestapp.model.Options;
 import smarttestapp.model.Question;
+import smarttestapp.model.Test;
 
 /**
  *
@@ -35,28 +37,34 @@ public class AddQuestionStage extends Stage {
         
         sp.setContent(gp);
         instance = this;
-        Scene scene = new Scene(sp, 750, 900);
+        Scene scene = new Scene(sp, 900, 900);
         this.setTitle("Add Question");
         this.setScene(scene);
         
    }
     
         
-    public void initAddQuestionStage()
+    public void initAddQuestionStage(Test q)
    {
+       
+       
+       
        // this.questionn = newq;
         sp = new ScrollPane();
         gp = new GridPane();
         
         sp.setContent(gp);
         instance = this;
-        Scene scene = new Scene(sp, 750, 900);
-        this.setTitle("Add Question");
+        Scene scene = new Scene(sp, 900, 900);
+        Test nt = new Test();
+        nt = q;
+        this.setTitle("Add Question for Test"+q.Testname+""+nt.Testname);
         this.setScene(scene);
        
            
         Label labelq = new Label("Question:");
-        this.questionname = new TextField();
+               
+        questionname = new TextField();
         Button addbtn = new Button();
         addbtn.setText("Save");
         
@@ -65,14 +73,17 @@ public class AddQuestionStage extends Stage {
         TextField adda = new TextField();
         adda.setPromptText("Type Answer Here");
         
-        Label labelch = new Label("Write in choices (separating them by a comma) :");//add the nametest variable - concatination
+        Label labelptv = new Label("Point Value:");//add the nametest variable - concatination
+        TextField tfpv = new TextField();
+        tfpv.setPromptText("Type Pont Value Here");
         
-        TextField addch = new TextField();
+        Label labelch = new Label("Write in choices (separating them by a comma) :");//add the nametest variable - concatination
+                TextField addch = new TextField();
         addch.setPromptText("choices");
         
         Label labello = new Label("Learning Outcomes:");//add the nametest variable - concatination
         
-        final Button addButton = new Button("Add");
+        Button addButton = new Button("Add");
         addButton.setOnAction((ActionEvent e) -> {
             
             
@@ -80,10 +91,10 @@ public class AddQuestionStage extends Stage {
             
         });
         
-        final Button cancelButton = new Button("Cancel");
+        Button cancelButton = new Button("Cancel");
         cancelButton.setOnAction((ActionEvent e) -> {
             
-            
+            this.close();
             
         });
         
@@ -124,14 +135,14 @@ public class AddQuestionStage extends Stage {
         hb1.setSpacing(3);
         
         HBox hb2 = new HBox();
-        hb2.getChildren().addAll(labela, adda, labelch, addch);
+        hb2.getChildren().addAll(labela, adda, labelptv, tfpv,labelch, addch);
         hb2.setSpacing(3);
         
         
         VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(labelq, hb2, labello ,root, hb1);
+        vbox.getChildren().addAll(labelq,questionname, hb2, labello ,root, hb1);
         gp.getChildren().addAll(vbox);
         
         
@@ -149,11 +160,12 @@ public class AddQuestionStage extends Stage {
     protected TextField choices;
     protected TextField pointvalue;
     protected TextField learningOutcomes;
+    protected Test nt;
     protected Question questionn;
    
    
-   CheckBox chksport1, chksport2, chksport3;
-    VBox vbchecks;
+    public CheckBox chksport1, chksport2, chksport3;
+    public VBox vbchecks;
    
    
 }

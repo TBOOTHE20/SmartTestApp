@@ -13,29 +13,17 @@ import java.util.ArrayList;
  */
 public class Question implements java.io.Serializable {
 
-    ArrayList<Options> myListofOptions= new ArrayList();
+    public Options myListofOptions; //array list with multiple options for ex for Question "whats 2 + 2?"
     public String question;
-    protected String correctanswer;
-    protected String pointvalue;
+    public String correctanswer;
+    public String pointvalue;
     //ArrayList<LearningOutcome> myListofLearningOutcome= new ArrayList();
 
     public Question() {
         
-        
 
     }
-    
-    public Question(String ques){
-        
-        this.question = ques;
-    
-    }
-            
-
-    public Question (ArrayList<Options> inpListofOptions){
-        this.myListofOptions = inpListofOptions;
-    }
-    
+       
     public void addQuestion(String quesinput)
        {
             this.question= quesinput;
@@ -47,10 +35,15 @@ public class Question implements java.io.Serializable {
        }
 
    
-       public void addOptions(String [] o) {
-        Options t = new Options(o);
+       public void addOptions(Options v) {
         //add to array
-        myListofOptions.add(t);
+        //creat option egg and add values
+        Options myListofOptions = new Options();
+        this.myListofOptions = v;
+        
+        
+        
+        
     }
        
        public void addAnswer(String ansinput)
@@ -58,5 +51,6 @@ public class Question implements java.io.Serializable {
             this.correctanswer = ansinput;
        }
 
+    
     
 }
