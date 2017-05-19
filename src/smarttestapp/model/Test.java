@@ -14,9 +14,11 @@ import java.util.ArrayList;
 public class Test implements java.io.Serializable {
     
     //data members
+    //public ArrayList<Test> myListofTests = new ArrayList();
     public ArrayList<Question> myListofQuestions = new ArrayList(); 
     public String Testname;
     public String PinId;
+    public String Grade;
     
 
     
@@ -26,16 +28,18 @@ public class Test implements java.io.Serializable {
         
 ;    }
 
-    public void Test(String inTestname, String inPinId){
+    public void Test(String inTestname, String inPinId, String Grade){
         this.Testname=inTestname;
-        this.PinId=inPinId;
+        this.PinId= inPinId;
+        this.Grade=Grade;
     
     }
     
-    public void Test(ArrayList<Question> myListofQuestions, String Testname, String PinId){
+    public void Test(ArrayList<Question> myListofQuestions, String Testname, String PinId, String Grade){
         this.myListofQuestions = myListofQuestions;
         this.Testname=Testname;
         this.PinId=PinId;
+        this.Grade=Grade;
     
     }
     
@@ -62,4 +66,12 @@ public class Test implements java.io.Serializable {
        PinId = testpinidinp;
    
    }
+  
+  public void addGrade(String testgradeinp){
+       
+       //
+       Grade = testgradeinp;
+   
+   }
+  
 }

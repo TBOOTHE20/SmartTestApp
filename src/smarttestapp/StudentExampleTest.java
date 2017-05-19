@@ -36,21 +36,23 @@ public class StudentExampleTest extends Stage {
         public GridPane gp;
         static StudentExampleTest instance = null;
         public Label subtest;
-       
+        public RadioButton buttonChoice;
     
-    public void StudentExampleTest(){ //passing a Test T
+    public void StudentExampleTest(){ //passing a Test testcreated
+        //this.Test = testcreated; 
+
         //this.choices = new Options(ex);
         //this.q = new Question();
         Test t = new Test(); //making test 
         t.addTestName("Math 105"); //making test math 105
         //String tes = t.Testname;
         //Label lbltes = new Label(tes);
-        
+
         Question q = new Question(); 
         q.addQuestion("What is 2+2?"); //Sample question
-        q.addAnswer("4"); //Sample Answer
+        q.addAnswers("4"); //Sample Answer
         //q.addPointValue("5");
-        q.addPointValues("6");
+        q.addPointValues("2");
         Options x = new Options();
         x.addOptionvalue("4");   
         x.addOptionvalue("8"); 
@@ -61,8 +63,8 @@ public class StudentExampleTest extends Stage {
         
         Question q2 = new Question(); 
         q2.addQuestion("What is 4+4?"); //Sample question
-        q2.addAnswer("8"); //Sample Answer
-        q2.addPointValues("10");
+        q2.addAnswers("8"); //Sample Answer
+        q2.addPointValues("3");
         Options x2 = new Options();
         
         x2.addOptionvalue("6");
@@ -117,18 +119,43 @@ public class StudentExampleTest extends Stage {
         gp.add(subtes, 5, 1);
             
             //4. add handler
-        subtes.setOnAction(new EventHandler<ActionEvent>() {
+        //subtes.setOnAction(new EventHandler<ActionEvent>() {
             
-                @Override
+                /*@Override
                 public void handle(ActionEvent event) {
-                    save(); //this will be saving the answers that student inputs for each question
+                    //q.question = 
+                   // save(); //this will be saving the answers that student inputs for each question
+                   
                 }
-            });
-    }        
-        public void save(){
-            //t. =
+            });*/
+                
+            subtes.setOnAction((ActionEvent e)-> {
+                
+                //String Start = tfFir.getText();
+                //String pwd = pf.getText();
+                this.close();
+                //save();
+                });     
+    }
+    
+        /*public void save(){
+            //employee.name = this.tfName.getText();
+            //Test.testcreated = Integer.parseInt(this.buttonChoice.getText();
+            
+            //if the button selected is equal to the correct answer
+            if(buttonChoice.isSelected() == q.correctanswer)
+            {
+                //this.
+                //give the point value given
+                q.pointvalue;//don't change the pointvalue
+                //
+            }
+            else{ //if the button pressed is not equal to the correct answer
+                //
+                q.pointvalue = 0;
+            }
         }
-        
+        */
     }
     
 

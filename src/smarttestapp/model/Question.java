@@ -28,11 +28,6 @@ public class Question implements java.io.Serializable {
        {
             this.question= quesinput; //points to a specific question
        }
-   
-    public void addPointValue(String pointinput)
-       {
-            this.correctanswer = pointinput;  //points to correct answer's pt value
-       }
 
     //i added this here to add point values in 
     public void addPointValues(String pointvalinp){
@@ -46,7 +41,7 @@ public class Question implements java.io.Serializable {
         this.myListofOptions = v;
         }
        
-       public void addAnswer(String ansinput)
+       public void addAnswers(String ansinput)
        {
             this.correctanswer = ansinput; //points to correct answer
        }

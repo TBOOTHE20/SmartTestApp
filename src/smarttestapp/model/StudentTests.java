@@ -4,69 +4,58 @@
  * and open the template in the editor.
  */
 package smarttestapp.model;
-
-import java.util.ArrayList;
 import smarttestapp.model.Test;
+import java.util.ArrayList;
 
 /**
  *
  * @author csc190
  */
-public class TeacherTests {
+public class StudentTests {
     
-    ArrayList<Test> myListofTest;
+    ArrayList<Test> myListofTests;
+  
     
-    
-    public void TeacherTests(){       
+    public void StudentTests(){       
          
         
     }    
     
-    public void TeacherTestsaddList(ArrayList<Test> myListofTestinp){
+    public void StudentTestsaddList(ArrayList<Test> myListofTestinp){
         
-        this.myListofTest= myListofTestinp;
+        this.myListofTests= myListofTestinp;
     
     }
     
-    public void addTest(Test t){
-    
-        this.myListofTest.add(t);
-    
-    }
-    
-    
-    public void removeTest(Test t){
-    
-        this.myListofTest.remove(t);
-    
-    }
     
     public String getTestinfo(String PinIdin){
     
-        for (int i = 0; i<myListofTest.size();i++){
+        for (int i = 0; i<myListofTests.size();i++){
             Test t = new Test();
-            t = myListofTest.get(i);
+            t = myListofTests.get(i);
             if (t.PinId==PinIdin)
                 return t.Testname;
         }
         return "Not found";
-        
-    
-   
+
     }  
-    
-    
+
     public String getTestinfobyNAME(String TestNameinp){
     
-        for (int i = 0; i<myListofTest.size();i++){
+        for (int i = 0; i<myListofTests.size();i++){
             Test t = new Test();
-            t = myListofTest.get(i);
+            t = myListofTests.get(i);
             if (t.Testname==TestNameinp)
                 return t.Testname;
         }
         return "Not found";
-        
-    
-   
+     
     } 
+    
+    
+    
+    
+    
+    
+    
 }
