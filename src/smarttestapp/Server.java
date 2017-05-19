@@ -53,6 +53,21 @@ public class Server {
         return arrUsers;
         
     }
+     protected static ArrayList<userInfos> getAll(){
+        String qry = "SELECT val FROM people";
+        ArrayList<String> userObjStr;
+        userObjStr = Utils.executeQuery(qry);
+        
+        //users user1;
+        //user1 = (users) Utils.toObj(userObjStr);
+        ArrayList<userInfos> arrUsers = new ArrayList<>();
+        for(String a : userObjStr){
+           userInfos usr = (userInfos) Utils.toObj(a);
+           arrUsers.add(usr);
+        }
+        return arrUsers;
+        
+    }
     //checks for verification
      protected static boolean getVerification(String username, String password){
         //1. retrieve the password of a user. This is for if we want to update a password

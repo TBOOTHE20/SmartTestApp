@@ -6,6 +6,7 @@
 package smarttestapp;
 
 import java.awt.Image;
+import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,6 +17,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -24,12 +26,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import static smarttestapp.Server.insertUser;
@@ -48,16 +52,18 @@ public class SmartTestApp extends Application {
     TextField tfUserLogin, tfFirAdmin, tfUser, tfFirReset;
     PasswordField pfLogin, pfAdmin,pfReset, cpfReset ;
     String unameLogin, pwdLogin, fName, pwd, role, AdminUsername, resetUName, resetPassword, confirmPassword, databasePassword, sRet, userContent;
-    GridPane gpLogin, gpAdmin, gpAdminHome, gpReset, pane4, pane5;
-    Scene scene, scene1, scene2, scene3, scene4, scene5;
+    GridPane gpLogin, gpAdmin, gpAdminHome, gpReset, pane4, pane5, gp;
+    Scene scene, scene1, scene2, scene3, scene4, see, scene7;
     RadioButton button1, button2;
     ToggleGroup group;
     Stage thestage;
-    ArrayList<userInfo> datafromUsers;
-    ArrayList<userInfo> people;
+    ArrayList<userInfo> datafromUsers,people;
+    ArrayList<userInfos>datafortable;
+    
     //This is going to be the username and Password for the admin
     String checkUser = "drEvil@hofstra.edu";
     String checkPassword = "goodyear";
+    private final TableView<userInfo> table = new TableView<>();
      
      @Override
     public void start(Stage primaryStage) {
@@ -104,7 +110,7 @@ public class SmartTestApp extends Application {
                 unameLogin = tfUserLogin.getText().toString();
                 pwdLogin = pfLogin.getText().toString();
                 
-                //UNDERCONSTRUCTION!!!!!!!!!
+                
                 people = Server.getAllUsers();
                 for(userInfo a : people){
                     if(a.username.equals(unameLogin) && a.password.equals(pwdLogin)){
@@ -112,7 +118,13 @@ public class SmartTestApp extends Application {
                         System.out.println("databasePassword: " + a.password + ", password: " + pwdLogin);
                         System.out.println("role:"+ a.role);
                         if(a.role.equals("Teacher")){
-                           //scene change to Teacher 
+                            scene7 = new Scene(gp, 500, 500);
+                           //scene change to Teacher
+                           thestage.setScene(scene7);
+                           TeacherNewTest newtest = new TeacherNewTest();
+                           newtest.initcreatetestscreen();
+                           newtest.showAndWait();
+                           
                         }
                         else if(a.role.equals("Student")){
                            //scene change to Student
@@ -148,10 +160,6 @@ public class SmartTestApp extends Application {
         btnRP.setText("Reset Password");
         gpAdminHome.add(btnRP, 2, 2); 
         
-        Button btnVU = new Button();
-        btnVU.setText("View Users");
-        gpAdminHome.add(btnVU, 2, 3); 
-        
         //4. add handler
         btnNU.setOnAction(new EventHandler<ActionEvent>() {
             
@@ -171,14 +179,7 @@ public class SmartTestApp extends Application {
             }
         });
         
-        btnVU.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                //thestage.setScene(scene4);
-                
-            }
-        });
+        
         
         
         //This deals with the second organization that has to deal with the second organization: for the Create new user
@@ -275,7 +276,7 @@ public class SmartTestApp extends Application {
             
             @Override
             public void handle(ActionEvent event) {
-                thestage.setScene(scene1);
+                thestage.setScene(scene);
                 
             }
         });
@@ -338,61 +339,47 @@ public class SmartTestApp extends Application {
                resetPassword = pfReset.getText().toString();
                confirmPassword = cpfReset.getText().toString();
                datafromUsers = Server.getAllUsers();
-               for(userInfo a : datafromUsers){
-                    System.out.println("uname: " + a.username + ", resetUname: " + resetUName);
-                    if(a.username.equals(resetUName)){
-                        a.password = resetPassword;
-                        userInfo [] arrU = new userInfo[]{
-                               new userInfo( a.fname, a.username, a.password, a.role)   
-                        };
-                        users user1 = new users(arrU);
-                        userInfo user = arrU[0];
-                        String url = "http://localhost/smarttest.php";
-                        String userC = Utils.toStr(user);
-                        System.out.println("New pwd is: " + a.password);
-                        System.out.print(userC);
-                        Server.updateUser(resetUName,userC);
-                        
-                        String response;
-                        try {
-                            response = Utils.httpsPost(url, userC);
-                            System.out.println(response);
-                        } catch (Exception ex) {
-                                Logger.getLogger(SmartTestApp.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        Alert al = new Alert(AlertType.INFORMATION);
-                        al.setContentText("The password has been reset to the database.");
-                        al.showAndWait();
-                    }
-               }
-                
-                if(resetPassword != confirmPassword){
+               if(resetPassword != confirmPassword){
                    Alert al = new Alert(AlertType.INFORMATION);
                    al.setContentText("Your input passwords do not match.");
                    al.showAndWait();
                 }
-                /*if(resetPassword == databasePassword){
+               else if(resetPassword == databasePassword){
                    Alert al = new Alert(AlertType.INFORMATION);
                    al.setContentText("This password has already been saved to the database.");
                    al.showAndWait();
-                }*/
-        
-               
-               /*databasePassword = Server.getUser(resetUName);
-               if(resetPassword == databasePassword){
-                   Alert al = new Alert(AlertType.INFORMATION);
-                   al.setContentText("This password has already been saved to the database.");
-                   al.showAndWait();
-               }*/
-               
+                }
+               else{
+                    for(userInfo a : datafromUsers){
+                         System.out.println("uname: " + a.username + ", resetUname: " + resetUName);
+                         if(a.username.equals(resetUName)){
+                             a.password = resetPassword;
+                             userInfo [] arrU = new userInfo[]{
+                                    new userInfo( a.fname, a.username, a.password, a.role)   
+                             };
+                             users user1 = new users(arrU);
+                             userInfo user = arrU[0];
+                             String url = "http://localhost/smarttest.php";
+                             String userC = Utils.toStr(user);
+                             System.out.println("New pwd is: " + a.password);
+                             System.out.print(userC);
+                             Server.updateUser(resetUName,userC);
+
+                             String response;
+                             try {
+                                 response = Utils.httpsPost(url, userC);
+                                 System.out.println(response);
+                             } catch (Exception ex) {
+                                     Logger.getLogger(SmartTestApp.class.getName()).log(Level.SEVERE, null, ex);
+                             }
+                             Alert al = new Alert(AlertType.INFORMATION);
+                             al.setContentText("The password has been reset to the database.");
+                             al.showAndWait();
+                         }
+                    }
                }
               
-                       
-                       
-           
-                    
-               
-                
+               }
             
         });    
         btnCancelReset.setOnAction(new EventHandler<ActionEvent>() {
@@ -405,114 +392,7 @@ public class SmartTestApp extends Application {
             
         });
         
-         //this is to show all the databases
-        /*private TableView<Person> table = new TableView<Person>();
-        GridPane gp = new GridPane();
-        Scene scene = new Scene(new Group());
-        stage.setTitle("Admin");
-        stage.setWidth(700);
-        stage.setHeight(600);
-        
-        final Label lblTitle = new Label("ADMIN CONSOLE");
-        lblTitle.setFont(new Font("Arial", 16));
- 
-        final Label lblTitle2 = new Label("User Database");
-        lblTitle2.setFont(new Font("Arial", 14));
 
-        //final Label label = new Label("User Database");
-        //label.setFont(new Font("Arial", 20));
- 
-        table.setEditable(true);
- 
-        TableColumn firstNameCol = new TableColumn("First Name");
-        firstNameCol.setMinWidth(100);
-        firstNameCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("firstName"));
- 
-        TableColumn lastNameCol = new TableColumn("Last Name");
-        lastNameCol.setMinWidth(100);
-        lastNameCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("lastName"));
- 
-        TableColumn userNameCol = new TableColumn("User Name");
-        userNameCol.setMinWidth(200);
-        userNameCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("userName"));
- 
-        TableColumn statusCol = new TableColumn("Status");
-        statusCol.setMinWidth(200);
-        statusCol.setCellValueFactory(
-                new PropertyValueFactory<Person, String>("status"));        
-        
-        //table.setItems(data);
-        table.getColumns().addAll(firstNameCol, lastNameCol, userNameCol,statusCol);
-        final Button backButton = new Button("Back");
-        backButton.setOnAction((ActionEvent e) -> {
-            
-        });
-        
-        final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(lblTitle, lblTitle2, table, backButton);
- 
-        ((Group) scene.getRoot()).getChildren().addAll(vbox);
-
-        stage.setScene(scene);
-        stage.show();
-    }
- 
-    public static class Person {
- 
-        private final SimpleStringProperty firstName;
-        private final SimpleStringProperty lastName;
-        private final SimpleStringProperty userName;
-        private final SimpleStringProperty status;
-        
- 
-        private Person(String fName, String lName, String UName, String Stat) {
-            this.firstName = new SimpleStringProperty(fName);
-            this.lastName = new SimpleStringProperty(lName);
-            this.userName = new SimpleStringProperty(UName);
-            this.status = new SimpleStringProperty(Stat);
-            
-        }
- 
-        public String getFirstName() {
-            return firstName.get();
-        }
- 
-        public void setFirstName(String fName) {
-            firstName.set(fName);
-        }
- 
-        public String getLastName() {
-            return lastName.get();
-        }
- 
-        public void setLastName(String lName) {
-            lastName.set(lName);
-        }
- 
-        public String getuserName() {
-            return userName.get();
-        }
- 
-        public void setuserName(String UName) {
-            userName.set(UName);
-        }
-        
-        public String getstatus() {
-            return status.get();
-        }
- 
-        public void setstatus(String Stat) {
-            status.set(Stat);
-        }*/
-       
-       
-    
-        //setting all the gridPanes
         primaryStage.setTitle("SmartTest");
         scene = new Scene(gpLogin, 550, 250);
         scene1 = new Scene(gpAdminHome, 550, 250);
@@ -520,9 +400,9 @@ public class SmartTestApp extends Application {
         scene3 = new Scene(gpReset, 550, 250);
         primaryStage.setScene(scene);
         primaryStage.show();
-    
     }
-       
+
+   
     
     
     /**
